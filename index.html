@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#88c8ee" />
+<title>Dubbel feest — Babyshower & 40e verjaardag | Cadeaulijst</title>
+<style>
+  :root {
+    --luchtblauw:#bfe5fa;
+    --hemel:#eaf8ff;
+    --blauw:#4aa7dc;
+    --blauw-donker:#155b87;
+    --marine:#123b5a;
+    --ijs:#f5fbff;
+    --zand:#fff7e6;
+    --goud:#d7a94a;
+    --groen:#66886d;
+    --grijs:#64748b;
+    --rood:#dc4c4c;
+    --wit:#ffffff;
+  }
+
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    margin:0;
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Cantarell,Helvetica,Arial,sans-serif;
+    color:#17324a;
+    background:linear-gradient(180deg,var(--hemel),#fff 44%,#f8fbfd);
+  }
+
+  .hero {
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+    padding:26px 16px 76px;
+    color:var(--marine);
+    background:
+      radial-gradient(110px 110px at 9% 16%,rgba(255,255,255,.75),transparent 62%),
+      radial-gradient(145px 145px at 90% 11%,rgba(255,255,255,.72),transparent 62%),
+      linear-gradient(180deg,#91d2f3 0%,#dff4ff 76%,#f8fcff 100%);
+  }
+
+  .postcard-label {
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-bottom:9px;
+    padding:6px 11px;
+    border:1px solid rgba(18,59,90,.16);
+    border-radius:999px;
+    background:rgba(255,255,255,.7);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+
+  .hero h1 {
+    margin:0;
+    font-size:clamp(34px,6vw,60px);
+    line-height:1;
+    letter-spacing:-.035em;
+  }
+
+  .hero h2 {
+    margin:10px 0 6px;
+    font-size:clamp(18px,3vw,27px);
+    font-weight:750;
+  }
+
+  .subtitle {
+    max-width:650px;
+    margin:0 auto 16px;
+    color:#315d78;
+    font-size:15px;
+  }
+
+  .andes-art {
+    display:block;
+    width:min(720px,100%);
+    height:auto;
+    margin:4px auto -4px;
+    filter:drop-shadow(0 10px 12px rgba(21,91,135,.14));
+  }
+
+  .event-info,
+  .place {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:9px;
+  }
+
+  .pill {
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 12px;
+    border:1px solid rgba(21,91,135,.16);
+    border-radius:999px;
+    background:rgba(255,255,255,.84);
+    color:#194a6a;
+    font-size:13px;
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(21,91,135,.07);
+  }
+
+  a.pill:hover { background:#fff; transform:translateY(-1px); }
+
+  .card {
+    position:relative;
+    width:min(980px,92%);
+    margin:-48px auto 42px;
+    padding:20px 20px 10px;
+    border:2px solid #ccecff;
+    border-radius:24px;
+    background:rgba(255,255,255,.97);
+    box-shadow:0 18px 45px rgba(21,91,135,.15);
+  }
+
+  .intro {
+    padding:16px 18px;
+    border:1px dashed #6eb9e7;
+    border-radius:17px;
+    background:linear-gradient(135deg,#f3fbff,#fffdf6);
+    line-height:1.55;
+  }
+
+  .intro p { margin:0; }
+  .intro .small { display:block; margin-top:7px; color:var(--grijs); font-size:13px; }
+
+  .section-title {
+    margin:20px 0 2px;
+    text-align:center;
+    color:var(--marine);
+    font-size:22px;
+  }
+
+  .section-subtitle {
+    margin:0 0 13px;
+    text-align:center;
+    color:var(--grijs);
+    font-size:13px;
+  }
+
+  .divider {
+    height:1px;
+    margin:16px 0;
+    background:linear-gradient(90deg,transparent,#bfe5fa,transparent);
+  }
+
+  .row {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+    gap:13px;
+    margin:12px 0 19px;
+  }
+
+  .item {
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    min-height:178px;
+    padding:14px 13px 12px;
+    border:1px solid #cce8f8;
+    border-radius:17px;
+    background:linear-gradient(180deg,#fff,#f7fcff);
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+  }
+
+  .item:hover {
+    transform:translateY(-2px);
+    border-color:#85c8ec;
+    box-shadow:0 10px 22px rgba(21,91,135,.09);
+  }
+
+  .item.reserved {
+    opacity:.78;
+    background:linear-gradient(180deg,#f8fafc,#eef5f8);
+  }
+
+  .item h3 {
+    max-width:72%;
+    margin:0 0 7px;
+    color:#194f73;
+    font-size:16px;
+    line-height:1.25;
+  }
+
+  .tag {
+    align-self:flex-start;
+    display:inline-block;
+    padding:3px 8px;
+    border:1px solid #b9def2;
+    border-radius:999px;
+    background:#e9f7ff;
+    color:#185a83;
+    font-size:12px;
+  }
+
+  .badge {
+    position:absolute;
+    top:10px;
+    right:10px;
+    max-width:44%;
+    overflow:hidden;
+    padding:3px 8px;
+    border:1px solid #ead190;
+    border-radius:999px;
+    background:#fff7d9;
+    color:#7a5a13;
+    font-size:11px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .desc {
+    flex:1;
+    min-height:38px;
+    margin:7px 0 11px;
+    color:var(--grijs);
+    font-size:13px;
+    line-height:1.4;
+  }
+
+  .controls { display:flex; flex-wrap:wrap; gap:8px; }
+
+  button {
+    padding:8px 11px;
+    border:2px solid #63b4e2;
+    border-radius:12px;
+    background:#fff;
+    color:#18577e;
+    font:inherit;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  button:hover:not(:disabled) { transform:translateY(-1px); }
+  button:disabled { cursor:not-allowed; opacity:.62; }
+  .primary { border-color:#2f90c8; background:#4aa7dc; color:#fff; }
+  .muted { border-color:#d7e3ea; color:#425b6b; }
+  .danger { border-color:#efaaaa; color:#a82f2f; }
+
+  .banner { margin-bottom:7px; padding:10px 0; text-align:center; }
+  .banner span {
+    display:inline-block;
+    padding:7px 11px;
+    border:1px solid #c7e7f8;
+    border-radius:999px;
+    background:#eff9ff;
+    color:#285d7e;
+    font-size:12px;
+  }
+
+  footer { padding:7px 0 20px; color:var(--grijs); text-align:center; font-size:12px; }
+
+  .notice {
+    margin:0 0 14px;
+    padding:10px 12px;
+    border-left:4px solid var(--goud);
+    border-radius:10px;
+    background:var(--zand);
+    color:#6b5423;
+    font-size:12px;
+  }
+
+  @media (max-width:620px) {
+    .hero { padding-top:20px; }
+    .hero h1 { font-size:39px; }
+    .card { width:94%; padding:15px 13px 8px; }
+    .row { grid-template-columns:1fr; }
+    .item { min-height:auto; }
+    .andes-art { margin-top:10px; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <span class="postcard-label">Een Andes-postkaart uit Ecuador</span>
+  <h1>Dubbel feest!</h1>
+  <h2>Mijn babyshower & mijn 40e verjaardag</h2>
+  <p class="subtitle">Samen vieren we nieuw leven, een bijzondere mijlpaal en de komst van onze kleine jongen.</p>
+
+  <!-- Andes, condor en baby: visuele verwijzing naar de uitnodiging -->
+  <svg class="andes-art" viewBox="0 0 760 275" role="img" aria-label="Andesgebergte met een condor die een mandje met een baby draagt">
+    <defs>
+      <linearGradient id="mountainBack" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#789bb1" />
+        <stop offset="1" stop-color="#b7d3df" />
+      </linearGradient>
+      <linearGradient id="mountainFront" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#66886d" />
+        <stop offset="1" stop-color="#335f55" />
+      </linearGradient>
+      <linearGradient id="basket" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#e7bd68" />
+        <stop offset="1" stop-color="#b67c2f" />
+      </linearGradient>
+    </defs>
+
+    <circle cx="644" cy="52" r="31" fill="#fff3b8" opacity=".95" />
+    <g fill="#fff" opacity=".8">
+      <ellipse cx="96" cy="64" rx="52" ry="16" />
+      <ellipse cx="139" cy="65" rx="38" ry="13" />
+      <ellipse cx="675" cy="101" rx="42" ry="13" />
+      <ellipse cx="709" cy="100" rx="30" ry="10" />
+    </g>
+
+    <path d="M0 220 L98 116 L155 178 L244 70 L326 171 L405 92 L492 179 L578 104 L676 188 L760 121 L760 275 L0 275 Z" fill="url(#mountainBack)" />
+    <path d="M98 116 L121 145 L98 137 L79 150 Z M244 70 L271 107 L244 95 L217 111 Z M405 92 L428 123 L404 113 L383 127 Z M578 104 L603 137 L578 128 L554 141 Z M760 121 L760 153 L735 150 Z" fill="#f8fdff" opacity=".92" />
+    <path d="M0 238 L115 171 L201 229 L311 150 L405 226 L515 160 L610 226 L703 169 L760 212 L760 275 L0 275 Z" fill="url(#mountainFront)" />
+
+    <!-- Condor -->
+    <g transform="translate(335 55)">
+      <path d="M40 44 C3 18 -52 14 -110 39 C-75 42 -47 53 -22 76 C-1 67 18 58 40 55 Z" fill="#1c2f3b" />
+      <path d="M71 45 C110 18 164 14 222 39 C187 42 158 53 133 76 C112 67 92 58 71 55 Z" fill="#1c2f3b" />
+      <path d="M40 44 C49 31 63 30 72 44 L78 72 C67 83 49 83 37 72 Z" fill="#263f4f" />
+      <path d="M53 30 C54 19 61 12 70 11 C79 11 85 17 87 25 C80 25 75 29 72 35 Z" fill="#fff6df" />
+      <path d="M84 24 L101 29 L85 34 Z" fill="#d9a640" />
+      <path d="M47 73 C51 86 53 92 54 101 M69 73 C65 86 64 92 63 101" fill="none" stroke="#744b28" stroke-width="3" stroke-linecap="round" />
+
+      <!-- ropes and basket -->
+      <path d="M54 100 L47 129 M63 100 L72 129" fill="none" stroke="#8b6236" stroke-width="2.4" />
+      <path d="M41 128 Q59 115 78 128 L74 151 Q59 159 44 151 Z" fill="url(#basket)" stroke="#9b6b2d" stroke-width="2" />
+      <path d="M46 135 H74 M45 142 H75 M51 124 L48 153 M59 121 L59 156 M68 124 L72 153" fill="none" stroke="#8d6029" stroke-width="1.3" opacity=".85" />
+      <ellipse cx="59" cy="128" rx="11" ry="9" fill="#f4c9aa" />
+      <path d="M48 129 Q59 140 70 129 L70 142 Q59 150 48 142 Z" fill="#d9f1ff" />
+      <path d="M51 125 Q59 117 68 125" fill="none" stroke="#5d8eaf" stroke-width="3" stroke-linecap="round" />
+    </g>
+  </svg>
+
+  <div class="event-info">
+    <span class="pill">📅 Zaterdag 5 september 2026</span>
+    <span class="pill">🕚 11.00–15.00 uur</span>
+    <span class="pill">🎈 Babyshower + 40 jaar</span>
+  </div>
+  <div class="place">
+    <span class="pill">📍 Vlierstraat 53, 6851 HS Huissen</span>
+    <a class="pill" href="https://www.google.com/maps/search/?api=1&query=Vlierstraat+53%2C+6851+HS+Huissen" target="_blank" rel="noopener">Bekijk op de kaart</a>
+  </div>
+</header>
+
+<main class="card">
+  <div class="intro">
+    <p><strong>Bedankt dat je dit bijzondere moment met ons viert!</strong> Kies een cadeau en klik op <strong>Reserveren</strong>. De reservering wordt voor iedereen zichtbaar en daarna opent WhatsApp om de gastvrouw te informeren.</p>
+    <span class="small">Zo voorkomen we dubbele cadeaus, terwijl de verrassing natuurlijk behouden blijft.</span>
+  </div>
+
+  <h3 class="section-title">Cadeaulijst voor onze kleine jongen</h3>
+  <p class="section-subtitle">Praktische en liefdevolle cadeaus voor zijn eerste maanden.</p>
+
+  <div class="notice"><strong>Beheerder:</strong> vervang in de code het voorbeeldnummer <code>+31600000000</code> door het WhatsApp-nummer van de gastvrouw, inclusief landcode.</div>
+
+  <div class="divider"></div>
+  <section id="grid" class="row" aria-live="polite"></section>
+  <div class="divider"></div>
+
+  <div class="banner"><span>Met liefde samengesteld voor mama en haar kleine jongen. Laatste update: 20-07-2026.</span></div>
+  <footer><span>Reserveringen worden direct opgeslagen. Bij een gekozen cadeau verschijnt “Gereserveerd door …”.</span></footer>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+import { getDatabase, ref, onValue, runTransaction, get, set } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+/* === FIREBASE-CONFIGURATIE ===
+   Deze configuratie is overgenomen uit de oorspronkelijke lijst.
+   Het databasepad hieronder is WEL gewijzigd, zodat de reserveringen
+   van deze klant niet worden gemengd met die van Gabriela.
+*/
+const firebaseConfig = {
+  apiKey: "AIzaSyDqmNK2nF6KJsVcZFdP4VPHUKLiL89HIjg",
+  authDomain: "babyshowergaby-4ce16.firebaseapp.com",
+  databaseURL: "https://babyshowergaby-4ce16-default-rtdb.firebaseio.com",
+  projectId: "babyshowergaby-4ce16",
+  storageBucket: "babyshowergaby-4ce16.firebasestorage.app",
+  messagingSenderId: "367031549351",
+  appId: "1:367031549351:web:4b07dec773d4334dd20a82"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+/* === EVENEMENTGEGEVENS === */
+const EVENT_NAME = "Babyshower & 40e verjaardag";
+const EVENT_DB_PATH = "babyshower_huissen_2026/reservations";
+const ADMIN_PHONE = "+31600000000"; // VERVANGEN door het echte WhatsApp-nummer
+
+/* === CADEAULIJST === */
+const ITEMS = [
+  { key:"it1",  title:"Avent-babyflessen", tag:"Voeding", note:"Bij voorkeur antikrampjesflessen." },
+  { key:"it2",  title:"Luiercrème", tag:"Verzorging", note:"Met zinkoxide, geschikt voor de gevoelige babyhuid." },
+  { key:"it3",  title:"Babyshampoo en milde zeep", tag:"Bad", note:"pH-neutraal en hypoallergeen." },
+  { key:"it4",  title:"Babybadje met standaard", tag:"Bad", note:"Met stabiele, antislip ondersteuning." },
+  { key:"it5",  title:"Hydrofiele swaddles (set van 3)", tag:"Textiel", note:"Licht en ademend om de baby in te wikkelen." },
+  { key:"it6",  title:"Zachte babydekentjes (set van 2)", tag:"Textiel", note:"Voor warmte thuis en onderweg." },
+  { key:"it7",  title:"Spuugdoekjes (set van 3)", tag:"Textiel", note:"Zacht en goed absorberend." },
+  { key:"it8",  title:"Rompertjes korte mouw 0–3 mnd (set van 3)", tag:"Kleding", note:"Bij voorkeur 100% katoen." },
+  { key:"it9",  title:"Rompertjes lange mouw 3–6 mnd (set van 3)", tag:"Kleding", note:"Fijn voor koelere dagen." },
+  { key:"it10", title:"Boxpakjes 0–3 mnd (set van 3)", tag:"Kleding", note:"Met praktische drukknoopjes of rits." },
+  { key:"it11", title:"Sokjes en krabwantjes (set van 6)", tag:"Kleding", note:"Voor warme voetjes en bescherming tegen krabben." },
+  { key:"it12", title:"Katoenen babymutsjes (set van 3)", tag:"Kleding", note:"Maat voor pasgeboren baby." },
+  { key:"it13", title:"Slabbetjes (set van 6)", tag:"Voeding", note:"Voor melk, voeding en kwijlen." },
+  { key:"it14", title:"Fopspeen met speenkoord (set van 2)", tag:"Comfort", note:"Veilige babykwaliteit, passend bij de leeftijd." },
+  { key:"it15", title:"Voedingskussen", tag:"Voeding", note:"Ergonomisch voor moeder en baby." },
+  { key:"it16", title:"Zoogkompressen", tag:"Voor mama", note:"Wasbaar of wegwerpbaar." },
+  { key:"it17", title:"Bewaarzakjes voor moedermelk", tag:"Voor mama", note:"Geschikt voor koelkast en vriezer." },
+  { key:"it18", title:"Ergonomische draagzak", tag:"Onderweg", note:"Met goede ondersteuning voor pasgeborenen." },
+  { key:"it19", title:"Hypoallergeen babywasmiddel", tag:"Verzorging", note:"Zonder sterke geurstoffen." },
+  { key:"it20", title:"Draagbaar verschoonmatje", tag:"Onderweg", note:"Licht, opvouwbaar en makkelijk schoon te maken." },
+  { key:"it21", title:"Babynestje in lichtblauw of neutrale kleur", tag:"Comfort", note:"Met ademende materialen en veilige afwerking." },
+  { key:"it22", title:"Elektrische babyvijl", tag:"Verzorging", note:"Zacht nagelverzorgingssetje voor baby's." },
+  { key:"it23", title:"Grote luiertas in lichtblauw of neutrale kleur", tag:"Onderweg", note:"Met meerdere vakken en liefst een verschoonmatje." },
+  { key:"it24", title:"Muziekdoosje", tag:"Comfort", note:"Met een zachte, rustige melodie." },
+  { key:"it25", title:"Elektrische babyschommel", tag:"Comfort", note:"Met veilige gordel en verschillende standen." },
+  { key:"it26", title:"Luiers newborn / maat 0", tag:"Luiers", note:"Pak voor de eerste weken." },
+  { key:"it27", title:"Luiers newborn / maat 0 — extra 1", tag:"Luiers", note:"Hoge prioriteit voor de kraamperiode." },
+  { key:"it28", title:"Luiers newborn / maat 0 — extra 2", tag:"Luiers", note:"Hoge prioriteit voor de kraamperiode." },
+  { key:"it29", title:"Luiers maat 1", tag:"Luiers", note:"Geschikt voor ongeveer maand 1–2." },
+  { key:"it30", title:"Luiers maat 1 — extra", tag:"Luiers", note:"Een extra pak is altijd welkom." },
+  { key:"it31", title:"Luiers maat 2", tag:"Luiers", note:"Geschikt voor ongeveer maand 3–4." },
+  { key:"it32", title:"Luiers maat 3", tag:"Luiers", note:"Geschikt voor ongeveer maand 5–6." },
+  { key:"it33", title:"Luiers maat 4", tag:"Luiers", note:"Voor een latere groeifase." },
+  { key:"it34", title:"Avent-flessenwarmer", tag:"Voeding", note:"Of een vergelijkbaar betrouwbaar model." },
+  { key:"it35", title:"Avent-sterilisator", tag:"Voeding", note:"Of een vergelijkbaar betrouwbaar model." }
+];
+
+/* === WEERGAVE === */
+const grid = document.getElementById("grid");
+grid.innerHTML = ITEMS.map(it => `
+  <article class="item" data-key="${it.key}">
+    <h3>${it.title}</h3>
+    <span class="tag">${it.tag}</span>
+    <span class="badge" data-badge="${it.key}"></span>
+    <p class="desc">${it.note || ""}</p>
+    <div class="controls">
+      <button class="primary" data-act="reserve" data-id="${it.key}">Reserveren</button>
+      <button class="muted" data-act="copy" data-id="${it.key}">Kopiëren</button>
+    </div>
+  </article>
+`).join("");
+
+/* === LIVE RESERVERINGSSTATUS === */
+ITEMS.forEach(it => {
+  const reservationRef = ref(db, `${EVENT_DB_PATH}/${it.key}`);
+
+  onValue(reservationRef, snap => {
+    const data = snap.val();
+    const card = document.querySelector(`[data-key="${it.key}"]`);
+    const reserveButton = card?.querySelector(`button[data-act="reserve"][data-id="${it.key}"]`);
+    const badge = card?.querySelector(`[data-badge="${it.key}"]`);
+    let cancelButton = card?.querySelector(`button[data-act="cancel"][data-id="${it.key}"]`);
+
+    if (data?.reserved) {
+      card?.classList.add("reserved");
+      if (reserveButton) {
+        reserveButton.disabled = true;
+        reserveButton.textContent = "Al gereserveerd";
+      }
+      if (badge) badge.textContent = `Gereserveerd door ${data.name || "—"}`;
+
+      if (!cancelButton && card) {
+        cancelButton = document.createElement("button");
+        cancelButton.className = "danger";
+        cancelButton.dataset.act = "cancel";
+        cancelButton.dataset.id = it.key;
+        cancelButton.textContent = "Annuleren (pincode)";
+        card.querySelector(".controls")?.appendChild(cancelButton);
+      }
+    } else {
+      card?.classList.remove("reserved");
+      if (reserveButton) {
+        reserveButton.disabled = false;
+        reserveButton.textContent = "Reserveren";
+      }
+      if (badge) badge.textContent = "";
+      cancelButton?.remove();
+    }
+  });
+});
+
+function openWhatsAppToHost(itemTitle, itemNote, guestName) {
+  const cleanPhone = ADMIN_PHONE.replace(/\D/g, "");
+
+  if (!cleanPhone || ADMIN_PHONE === "+31657292581") {
+    alert("Vul eerst het echte WhatsApp-nummer van de gastvrouw in bij ADMIN_PHONE.");
+    return;
+  }
+
+  const message = [
+    `Hallo, ik bevestig mijn reservering voor ${EVENT_NAME}:`,
+    `• Cadeau: ${itemTitle}`,
+    `• Omschrijving: ${itemNote || "—"}`,
+    `• Mijn naam: ${guestName}`
+  ].join("\n");
+
+  window.location.assign(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`);
+}
+
+/* === ACTIES === */
+addEventListener("click", async event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+
+  const action = button.dataset.act;
+  const id = button.dataset.id;
+  if (!action || !id) return;
+
+  const item = ITEMS.find(entry => entry.key === id);
+  const reservationRef = ref(db, `${EVENT_DB_PATH}/${id}`);
+
+  if (action === "copy") {
+    try {
+      await navigator.clipboard.writeText(`${item.title} — ${item.note || ""}`);
+      button.textContent = "Gekopieerd";
+      setTimeout(() => { button.textContent = "Kopiëren"; }, 1200);
+    } catch {
+      alert("Kopiëren is niet gelukt. Selecteer de tekst handmatig.");
+    }
+    return;
+  }
+
+  if (action === "reserve") {
+    const guestName = prompt("Vul je naam in om dit cadeau te reserveren:");
+    if (!guestName?.trim()) return;
+
+    try {
+      const result = await runTransaction(reservationRef, current => {
+        if (current?.reserved) return;
+        return { reserved:true, name:guestName.trim(), ts:Date.now() };
+      });
+
+      if (!result.committed) {
+        alert("Dit cadeau is net door iemand anders gereserveerd.");
+        return;
+      }
+
+      openWhatsAppToHost(item.title, item.note, guestName.trim());
+    } catch (error) {
+      console.error(error);
+      alert("De reservering kon niet worden opgeslagen. Controleer de Firebase-regels en database-URL.");
+    }
+    return;
+  }
+
+  if (action === "cancel") {
+    const pin = prompt("Vul de pincode van de gastvrouw in:");
+    if (!pin) return;
+
+    try {
+      const snapshot = await get(reservationRef);
+      const current = snapshot.val();
+
+      if (!current?.reserved) {
+        alert("Dit cadeau is niet gereserveerd.");
+        return;
+      }
+
+      await set(reservationRef, {
+        reserved:false,
+        name:current.name,
+        ts:current.ts,
+        pin,
+        cancelTs:Date.now()
+      });
+
+      alert("Reservering geannuleerd ✓");
+    } catch (error) {
+      console.error(error);
+      alert("Annuleren is niet gelukt. Controleer de pincode of de Firebase-regels.");
+    }
+  }
+});
+</script>
+</body>
+</html>
