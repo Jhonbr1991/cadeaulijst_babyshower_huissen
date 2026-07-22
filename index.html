@@ -275,15 +275,6 @@
 
   footer { padding:7px 0 20px; color:var(--grijs); text-align:center; font-size:12px; }
 
-  .notice {
-    margin:0 0 14px;
-    padding:10px 12px;
-    border-left:4px solid var(--goud);
-    border-radius:10px;
-    background:var(--zand);
-    color:#6b5423;
-    font-size:12px;
-  }
 
   code {
     padding:1px 4px;
@@ -320,14 +311,11 @@
 
 <main class="card">
   <div class="intro">
-    <p><strong>Bedankt dat je onze babyshower met ons viert!</strong> Kies een cadeau en klik op <strong>Reserveren</strong>. De reservering wordt voor iedereen zichtbaar en daarna opent WhatsApp om de gastvrouw te informeren.</p>
-    <span class="small">Zo voorkomen we dubbele cadeaus, terwijl de verrassing natuurlijk behouden blijft.</span>
+    <p><strong>Bedankt dat je onze babyshower met ons viert!</strong> Kies een cadeau en klik op <strong>Reserveren</strong>.</p>
   </div>
 
   <h3 class="section-title">Cadeaulijst voor onze zoon</h3>
   <p class="section-subtitle">Praktische en liefdevolle cadeaus voor zijn eerste maanden.</p>
-
-  <div class="notice"><strong>Beheerder:</strong> vervang in de code het voorbeeldnummer <code>+31600000000</code> door het WhatsApp-nummer van de gastvrouw, inclusief landcode.</div>
 
   <div class="divider"></div>
   <section id="grid" class="row" aria-live="polite"></section>
@@ -469,7 +457,8 @@ ITEMS.forEach(item => {
 function openWhatsAppToHost(itemTitle, itemNote, guestName) {
   const cleanPhone = ADMIN_PHONE.replace(/\D/g, "");
 
-  if (!cleanPhone || ADMIN_PHONE === "+31657292581") {
+  if (!cleanPhone) {
+    alert("Het WhatsApp-nummer van de gastvrouw ontbreekt.");
     return;
   }
 
