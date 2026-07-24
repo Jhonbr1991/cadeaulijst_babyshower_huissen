@@ -6,456 +6,116 @@
 <meta name="theme-color" content="#88c8ee" />
 <title>Babyshower — Cadeaulijst voor onze zoon</title>
 <style>
-  :root {
-    --luchtblauw:#bfe5fa;
-    --hemel:#eaf8ff;
-    --blauw:#4aa7dc;
-    --blauw-donker:#155b87;
-    --marine:#123b5a;
-    --ijs:#f5fbff;
-    --zand:#fff7e6;
-    --goud:#d7a94a;
-    --grijs:#64748b;
-    --rood:#dc4c4c;
-    --wit:#ffffff;
-  }
-
-  * { box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-
-  body {
-    margin:0;
-    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Cantarell,Helvetica,Arial,sans-serif;
-    color:#17324a;
-    background:linear-gradient(180deg,var(--hemel),#fff 44%,#f8fbfd);
-  }
-
-  .hero {
-    position:relative;
-    overflow:hidden;
-    text-align:center;
-    padding:42px 16px 76px;
-    color:var(--marine);
-    background:
-      radial-gradient(110px 110px at 9% 16%,rgba(255,255,255,.78),transparent 62%),
-      radial-gradient(145px 145px at 90% 11%,rgba(255,255,255,.76),transparent 62%),
-      linear-gradient(180deg,#91d2f3 0%,#dff4ff 76%,#f8fcff 100%);
-  }
-
-  .hero::before,
-  .hero::after {
-    content:"";
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,.42);
-    pointer-events:none;
-  }
-
-  .hero::before {
-    width:210px;
-    height:210px;
-    left:-85px;
-    bottom:-95px;
-  }
-
-  .hero::after {
-    width:260px;
-    height:260px;
-    right:-105px;
-    bottom:-125px;
-  }
-
-  .baby-icon {
-    display:inline-grid;
-    place-items:center;
-    width:58px;
-    height:58px;
-    margin-bottom:10px;
-    border:1px solid rgba(21,91,135,.14);
-    border-radius:50%;
-    background:rgba(255,255,255,.76);
-    box-shadow:0 8px 20px rgba(21,91,135,.10);
-    font-size:29px;
-  }
-
-  .hero h1 {
-    margin:0;
-    font-size:clamp(34px,6vw,60px);
-    line-height:1.04;
-    letter-spacing:-.035em;
-  }
-
-  .hero h2 {
-    margin:11px 0 7px;
-    font-size:clamp(18px,3vw,27px);
-    font-weight:750;
-  }
-
-  .subtitle {
-    max-width:650px;
-    margin:0 auto 18px;
-    color:#315d78;
-    font-size:15px;
-  }
-
-  .event-info,
-  .place {
-    position:relative;
-    z-index:1;
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    margin-top:9px;
-  }
-
-  .pill {
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    padding:8px 12px;
-    border:1px solid rgba(21,91,135,.16);
-    border-radius:999px;
-    background:rgba(255,255,255,.86);
-    color:#194a6a;
-    font-size:13px;
-    text-decoration:none;
-    box-shadow:0 4px 12px rgba(21,91,135,.07);
-  }
-
-  a.pill:hover { background:#fff; transform:translateY(-1px); }
-
-  .card {
-    position:relative;
-    width:min(1040px,92%);
-    margin:-48px auto 42px;
-    padding:20px 20px 10px;
-    border:2px solid #ccecff;
-    border-radius:24px;
-    background:rgba(255,255,255,.98);
-    box-shadow:0 18px 45px rgba(21,91,135,.15);
-  }
-
-  .intro {
-    padding:16px 18px;
-    border:1px dashed #6eb9e7;
-    border-radius:17px;
-    background:linear-gradient(135deg,#f3fbff,#fffdf6);
-    line-height:1.55;
-  }
-
-  .intro p { margin:0; }
-  .intro .small { display:block; margin-top:7px; color:var(--grijs); font-size:13px; }
-
-  .section-title {
-    margin:30px 0 2px;
-    text-align:center;
-    color:var(--marine);
-    font-size:22px;
-  }
-
-  .section-subtitle {
-    margin:0 0 13px;
-    text-align:center;
-    color:var(--grijs);
-    font-size:13px;
-  }
-
-  .divider {
-    height:1px;
-    margin:16px 0;
-    background:linear-gradient(90deg,transparent,#bfe5fa,transparent);
-  }
-
-  .row {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:15px;
-    margin:12px 0 19px;
-  }
-
-  .item {
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    min-height:340px;
-    padding:0;
-    border:1px solid #cce8f8;
-    border-radius:17px;
-    background:#fff;
-    overflow:hidden;
-    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
-  }
-
-  .item:hover {
-    transform:translateY(-2px);
-    border-color:#85c8ec;
-    box-shadow:0 10px 22px rgba(21,91,135,.09);
-  }
-
-  .item.reserved {
-    opacity:.78;
-    background:#f8fafc;
-  }
-
-  .item-img {
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
-  }
-
-  .item-content {
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    padding:14px 13px 12px;
-  }
-
-  .item h3 {
-    max-width:78%;
-    margin:0 0 7px;
-    color:#194f73;
-    font-size:16px;
-    line-height:1.25;
-  }
-
-  .tag {
-    align-self:flex-start;
-    display:inline-block;
-    padding:3px 8px;
-    margin-bottom:6px;
-    border:1px solid #b9def2;
-    border-radius:999px;
-    background:#e9f7ff;
-    color:#185a83;
-    font-size:12px;
-  }
-
-  .price {
-    position:absolute;
-    top:168px;
-    right:10px;
-    padding:5px 10px;
-    border:1px solid #ead190;
-    border-radius:999px;
-    background:rgba(255,247,217,.95);
-    color:#7a5a13;
-    font-size:13px;
-    font-weight:700;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-  }
-
-  .badge {
-    position:absolute;
-    top:10px;
-    right:10px;
-    max-width:44%;
-    overflow:hidden;
-    padding:3px 8px;
-    border:1px solid #ead190;
-    border-radius:999px;
-    background:rgba(255,247,217,.95);
-    color:#7a5a13;
-    font-size:11px;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-  }
-
-  .desc {
-    flex:1;
-    min-height:38px;
-    margin:7px 0 11px;
-    color:var(--grijs);
-    font-size:13px;
-    line-height:1.4;
-  }
-
-  .controls { display:flex; flex-wrap:wrap; gap:8px; }
-
-  button {
-    padding:8px 11px;
-    border:2px solid #63b4e2;
-    border-radius:12px;
-    background:#fff;
-    color:#18577e;
-    font:inherit;
-    font-size:13px;
-    font-weight:700;
-    cursor:pointer;
-    transition:all .15s ease;
-  }
-
-  button:hover:not(:disabled) { 
-    transform:translateY(-1px);
-    box-shadow:0 4px 12px rgba(21,91,135,.12);
-  }
-  button:disabled { cursor:not-allowed; opacity:.62; }
-  .primary { border-color:#2f90c8; background:#4aa7dc; color:#fff; }
-  .muted { border-color:#d7e3ea; color:#425b6b; }
-  .danger { border-color:#efaaaa; color:#a82f2f; }
-
-  .banner { margin-bottom:7px; padding:10px 0; text-align:center; }
-  .banner span {
-    display:inline-block;
-    padding:7px 11px;
-    border:1px solid #c7e7f8;
-    border-radius:999px;
-    background:#eff9ff;
-    color:#285d7e;
-    font-size:12px;
-  }
-
-  footer { padding:7px 0 20px; color:var(--grijs); text-align:center; font-size:12px; }
-
-  @media (max-width:620px) {
-    .hero { padding-top:28px; }
-    .hero h1 { font-size:39px; }
-    .card { width:94%; padding:15px 13px 8px; }
-    .row { grid-template-columns:1fr; }
-    .item { min-height:auto; }
-    .item-img { height:220px; }
-  }
+:root{--luchtblauw:#bfe5fa;--hemel:#eaf8ff;--blauw:#4aa7dc;--blauw-donker:#155b87;--marine:#123b5a;--ijs:#f5fbff;--zand:#fff7e6;--goud:#d7a94a;--grijs:#64748b;--rood:#dc4c4c;--wit:#ffffff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Cantarell,Helvetica,Arial,sans-serif;color:#17324a;background:linear-gradient(180deg,var(--hemel),#fff 44%,#f8fbfd)}.hero{position:relative;overflow:hidden;text-align:center;padding:42px 16px 76px;color:var(--marine);background:radial-gradient(110px 110px at 9% 16%,rgba(255,255,255,.78),transparent 62%),radial-gradient(145px 145px at 90% 11%,rgba(255,255,255,.76),transparent 62%),linear-gradient(180deg,#91d2f3 0%,#dff4ff 76%,#f8fcff 100%)}.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.42);pointer-events:none}.hero::before{width:210px;height:210px;left:-85px;bottom:-95px}.hero::after{width:260px;height:260px;right:-105px;bottom:-125px}.baby-icon{display:inline-grid;place-items:center;width:58px;height:58px;margin-bottom:10px;border:1px solid rgba(21,91,135,.14);border-radius:50%;background:rgba(255,255,255,.76);box-shadow:0 8px 20px rgba(21,91,135,.10);font-size:29px}.hero h1{margin:0;font-size:clamp(34px,6vw,60px);line-height:1.04;letter-spacing:-.035em}.hero h2{margin:11px 0 7px;font-size:clamp(18px,3vw,27px);font-weight:750}.subtitle{max-width:650px;margin:0 auto 18px;color:#315d78;font-size:15px}.event-info,.place{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:9px}.pill{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid rgba(21,91,135,.16);border-radius:999px;background:rgba(255,255,255,.86);color:#194a6a;font-size:13px;text-decoration:none;box-shadow:0 4px 12px rgba(21,91,135,.07)}a.pill:hover{background:#fff;transform:translateY(-1px)}.card{position:relative;width:min(1040px,92%);margin:-48px auto 42px;padding:20px 20px 10px;border:2px solid #ccecff;border-radius:24px;background:rgba(255,255,255,.98);box-shadow:0 18px 45px rgba(21,91,135,.15)}.intro{padding:16px 18px;border:1px dashed #6eb9e7;border-radius:17px;background:linear-gradient(135deg,#f3fbff,#fffdf6);line-height:1.55}.intro p{margin:0}.intro .small{display:block;margin-top:7px;color:var(--grijs);font-size:13px}.section-title{margin:30px 0 2px;text-align:center;color:var(--marine);font-size:22px}.section-subtitle{margin:0 0 13px;text-align:center;color:var(--grijs);font-size:13px}.divider{height:1px;margin:16px 0;background:linear-gradient(90deg,transparent,#bfe5fa,transparent)}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px;margin:12px 0 19px}.item{position:relative;display:flex;flex-direction:column;min-height:340px;padding:0;border:1px solid #cce8f8;border-radius:17px;background:#fff;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.item:hover{transform:translateY(-2px);border-color:#85c8ec;box-shadow:0 10px 22px rgba(21,91,135,.09)}.item.reserved{opacity:.78;background:#f8fafc}.item-img{width:100%;height:200px;object-fit:cover;background:linear-gradient(135deg,#f0f9ff,#e0f2fe)}.item-content{flex:1;display:flex;flex-direction:column;padding:14px 13px 12px}.item h3{max-width:78%;margin:0 0 7px;color:#194f73;font-size:16px;line-height:1.25}.tag{align-self:flex-start;display:inline-block;padding:3px 8px;margin-bottom:6px;border:1px solid #b9def2;border-radius:999px;background:#e9f7ff;color:#185a83;font-size:12px}.price{position:absolute;top:168px;right:10px;padding:5px 10px;border:1px solid #ead190;border-radius:999px;background:rgba(255,247,217,.95);color:#7a5a13;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.08)}.badge{position:absolute;top:10px;right:10px;max-width:44%;overflow:hidden;padding:3px 8px;border:1px solid #ead190;border-radius:999px;background:rgba(255,247,217,.95);color:#7a5a13;font-size:11px;text-overflow:ellipsis;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08)}.desc{flex:1;min-height:38px;margin:7px 0 11px;color:var(--grijs);font-size:13px;line-height:1.4}.controls{display:flex;flex-wrap:wrap;gap:8px}button{padding:8px 11px;border:2px solid #63b4e2;border-radius:12px;background:#fff;color:#18577e;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s ease}button:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 12px rgba(21,91,135,.12)}button:disabled{cursor:not-allowed;opacity:.62}.primary{border-color:#2f90c8;background:#4aa7dc;color:#fff}.muted{border-color:#d7e3ea;color:#425b6b}.danger{border-color:#efaaaa;color:#a82f2f}.banner{margin-bottom:7px;padding:10px 0;text-align:center}.banner span{display:inline-block;padding:7px 11px;border:1px solid #c7e7f8;border-radius:999px;background:#eff9ff;color:#285d7e;font-size:12px}footer{padding:7px 0 20px;color:var(--grijs);text-align:center;font-size:12px}@media (max-width:620px){.hero{padding-top:28px}.hero h1{font-size:39px}.card{width:94%;padding:15px 13px 8px}.row{grid-template-columns:1fr}.item{min-height:auto}.item-img{height:220px}}
 </style>
 </head>
 <body>
 <header class="hero">
-  <div class="baby-icon" aria-hidden="true">🍼</div>
-  <h1>Welkom op onze babyshower!</h1>
-  <h2>Samen vieren we de komst van onze zoon</h2>
-  <p class="subtitle">Bedankt dat je dit bijzondere moment met ons deelt.</p>
-
-  <div class="event-info">
-    <span class="pill">📅 Zaterdag 5 september 2026</span>
-    <span class="pill">🕚 11.00–15.00 uur</span>
-    <span class="pill">🎈 Babyshower</span>
-  </div>
-  <div class="place">
-    <span class="pill">📍 Vlierstraat 53, 6851 HS Huissen</span>
-    <a class="pill" href="https://www.google.com/maps/search/?api=1&query=Vlierstraat+53%2C+6851+HS+Huissen" target="_blank" rel="noopener">Bekijk op de kaart</a>
-  </div>
+<div class="baby-icon">🍼</div>
+<h1>Welkom op onze babyshower!</h1>
+<h2>Samen vieren we de komst van onze zoon</h2>
+<p class="subtitle">Bedankt dat je dit bijzondere moment met ons deelt.</p>
+<div class="event-info">
+<span class="pill">📅 Zaterdag 5 september 2026</span>
+<span class="pill">🕚 11.00–15.00 uur</span>
+<span class="pill">🎈 Babyshower</span>
+</div>
+<div class="place">
+<span class="pill">📍 Vlierstraat 53, 6851 HS Huissen</span>
+<a class="pill" href="https://www.google.com/maps/search/?api=1&query=Vlierstraat+53%2C+6851+HS+Huissen" target="_blank" rel="noopener">Bekijk op de kaart</a>
+</div>
 </header>
-
 <main class="card">
-  <div class="intro">
-    <p><strong>Bedankt dat je onze babyshower met ons viert!</strong> Kies een cadeau en klik op <strong>Reserveren</strong>.</p>
-    <span class="small">Je naam verschijnt direct bij het gekozen cadeau.</span>
-  </div>
-
-  <h3 class="section-title">Cadeaulijst voor onze zoon</h3>
-  <p class="section-subtitle">Praktische en liefdevolle cadeaus voor zijn eerste maanden.</p>
-
-  <div class="divider"></div>
-  <section id="grid" class="row" aria-live="polite"></section>
-  <div class="divider"></div>
-
-  <div class="banner"><span>Met liefde samengesteld. Laatste update: januari 2025.</span></div>
-  <footer><span>Reserveringen worden direct opgeslagen. Bij een gekozen cadeau verschijnt "Gereserveerd door …".</span></footer>
+<div class="intro">
+<p><strong>Bedankt dat je onze babyshower met ons viert!</strong> Kies een cadeau en klik op <strong>Reserveren</strong>.</p>
+<span class="small">Je naam verschijnt direct bij het gekozen cadeau.</span>
+</div>
+<h3 class="section-title">Cadeaulijst voor onze zoon</h3>
+<p class="section-subtitle">Praktische en liefdevolle cadeaus voor zijn eerste maanden.</p>
+<div class="banner"><span>Met liefde samengesteld. Laatste update: januari 2025.</span></div>
+<div class="divider"></div>
+<div class="row" id="list"></div>
+<div class="divider"></div>
+<p style="text-align:center;color:var(--grijs);font-size:13px;margin:14px 0">Reserveringen worden direct opgeslagen. Bij een gekozen cadeau verschijnt "Gereserveerd door ...".</p>
 </main>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBEelle7pqVUsSRkeP-04BnP4YfeNH9YII",
-  authDomain: "babyshower-cadeaulijst-huissen.firebaseapp.com",
-  databaseURL: "https://babyshower-cadeaulijst-huissen-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "babyshower-cadeaulijst-huissen",
-  storageBucket: "babyshower-cadeaulijst-huissen.firebasestorage.app",
-  messagingSenderId: "835423989603",
-  appId: "1:835423989603:web:bb7798ae63d3c6c5fc8d49"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const IMG_BASE = "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/";
-
-const items = [
-  { id:1, img:"imagen1.jpg", name:"Luiers maat 1", cat:"Verzorging", desc:"Zachte luiers voor pasgeborenen.", price:"€25" },
-  { id:2, img:"imagen2.jpg", name:"Flesjes (6 stuks)", cat:"Voeding", desc:"BPA-vrije babyflessen met speen.", price:"€20" },
-  { id:3, img:"imagen3.jpg", name:"Rompertjes set (5 stuks)", cat:"Kleding", desc:"Kleurrijke rompertjes maat 56-62.", price:"€30" },
-  { id:4, img:"imagen4.jpg", name:"Badcape met capuchon", cat:"Bad", desc:"Zachte badcape met oortjes.", price:"€18" },
-  { id:5, img:"imagen5.jpg", name:"Babydoekjes (10 pakken)", cat:"Verzorging", desc:"Gevoelige vochtige doekjes.", price:"€22" },
-  { id:6, img:"imagen6.jpg", name:"Speelkleed met speelboog", cat:"Speelgoed", desc:"Kleurrijk kleed met hangend speelgoed.", price:"€45" },
-  { id:7, img:"imagen7.jpg", name:"Knuffels set (3 stuks)", cat:"Speelgoed", desc:"Zachte knuffels voor de baby.", price:"€25" },
-  { id:8, img:"imagen8.jpg", name:"Babymonitor met camera", cat:"Veiligheid", desc:"HD camera met nachtzicht.", price:"€80" },
-  { id:9, img:"imagen9.jpg", name:"Luiertas", cat:"Accessoires", desc:"Ruime tas met veel vakjes.", price:"€35" },
-  { id:10, img:"imagen10.jpg", name:"Lakentjes (3 stuks)", cat:"Slaap", desc:"Zachte hoeslakens voor wieg.", price:"€28" },
-  { id:11, img:"imagen11.jpg", name:"Slaapzak (winter)", cat:"Slaap", desc:"Warme slaapzak 70 cm.", price:"€32" },
-  { id:12, img:"imagen12.jpg", name:"Voedingskussen", cat:"Voeding", desc:"Ergonomisch kussen voor moeder en baby.", price:"€40" },
-  { id:13, img:"imagen13.jpg", name:"Verzorgingsset", cat:"Verzorging", desc:"Borstel, kam, nagelschaar, thermometer.", price:"€18" },
-  { id:14, img:"imagen14.jpg", name:"Wandelwagen", cat:"Vervoer", desc:"Lichtgewicht buggy met zonnekap.", price:"€180" },
-  { id:15, img:"imagen15.jpg", name:"Maxicosi", cat:"Vervoer", desc:"Autostoel groep 0+ (0-13 kg).", price:"€120" },
-  { id:16, img:"imagen16.jpg", name:"Babygym hout", cat:"Speelgoed", desc:"Houten gym met hangers.", price:"€50" },
-  { id:17, img:"imagen17.jpg", name:"Bijtringen set", cat:"Speelgoed", desc:"Siliconen bijtringen, BPA-vrij.", price:"€12" },
-  { id:18, img:"imagen18.jpg", name:"Rammelaar set (4 stuks)", cat:"Speelgoed", desc:"Kleurrijke rammelaars.", price:"€15" },
-  { id:19, img:"imagen19.jpg", name:"Nachtlampje", cat:"Slaap", desc:"Zacht licht met timer.", price:"€22" },
-  { id:20, img:"imagen20.jpg", name:"Wiegje (opvouwbaar)", cat:"Slaap", desc:"Reisbedje met matras.", price:"€70" },
-  { id:21, img:"imagen21.jpg", name:"Box met speelgoed", cat:"Veiligheid", desc:"Veilige box met gekleurde randen.", price:"€90" },
-  { id:22, img:"imagen22.jpg", name:"Commode met lades", cat:"Meubels", desc:"Witte commode met 3 lades.", price:"€150" },
-  { id:23, img:"imagen23.jpg", name:"Babykamer decoratie", cat:"Decoratie", desc:"Muurstickers en slingers.", price:"€25" },
-  { id:24, img:"imagen24.jpg", name:"Speendoekjes (5 stuks)", cat:"Verzorging", desc:"Zachte doekjes met clip.", price:"€18" },
-  { id:25, img:"imagen25.jpg", name:"Hydrofiele doeken (set)", cat:"Verzorging", desc:"Multifunctionele doeken.", price:"€20" },
-  { id:26, img:"imagen26.jpg", name:"Babybadthermometer", cat:"Bad", desc:"Digitale thermometer, waterbestendig.", price:"€12" },
-  { id:27, img:"imagen27.jpg", name:"Babylotion & shampoo", cat:"Verzorging", desc:"Verzorgingsset zonder parfum.", price:"€18" },
-  { id:28, img:"imagen28.jpg", name:"Boxkleed", cat:"Speelgoed", desc:"Zacht kleed voor in de box.", price:"€35" },
-  { id:29, img:"imagen29.jpg", name:"Slabbetjes (10 stuks)", cat:"Voeding", desc:"Waterdichte slabbetjes.", price:"€15" },
-  { id:30, img:"imagen30.jpg", name:"Muziekdoosje", cat:"Slaap", desc:"Speelt rustgevende melodieën.", price:"€28" },
-  { id:31, img:"imagen31.jpg", name:"Babyfoon (audio)", cat:"Veiligheid", desc:"Betrouwbare audiofoon.", price:"€45" },
-  { id:32, img:"imagen32.jpg", name:"Kruippakjes (3 stuks)", cat:"Kleding", desc:"Comfortabele pakjes maat 62-68.", price:"€28" },
-  { id:33, img:"imagen33.jpg", name:"Speelgoedkist", cat:"Opslag", desc:"Houten kist met deksel.", price:"€55" },
-  { id:34, img:"imagen34.jpg", name:"Babyschoentjes (zachte zool)", cat:"Kleding", desc:"Zachte schoentjes maat 16-18.", price:"€20" }
+<footer>© 2025 — Gemaakt met ❤️ voor onze zoon</footer>
+<script>
+const products=[
+{id:1,name:"Luiers maat 1",cat:"Verzorging",price:"€15-25",desc:"Zachte wegwerpluiers voor pasgeborenen",img:"imagen1.jpg"},
+{id:2,name:"Flesjes",cat:"Voeding",price:"€12-20",desc:"Anti-koliek babyflesjes met speen",img:"imagen2.jpg"},
+{id:3,name:"Rompertjes",cat:"Kleding",price:"€8-15",desc:"Katoenen rompertjes maat 56-62",img:"imagen3.jpg"},
+{id:4,name:"Badcape",cat:"Verzorging",price:"€10-18",desc:"Zachte badcape met capuchon",img:"imagen4.jpg"},
+{id:5,name:"Babydoekjes",cat:"Verzorging",price:"€5-10",desc:"Hypoallergene billendoekjes",img:"imagen5.jpg"},
+{id:6,name:"Speelkleed",cat:"Spelen",price:"€25-40",desc:"Kleurrijk speelkleed met speeltjes",img:"imagen6.jpg"},
+{id:7,name:"Knuffels",cat:"Spelen",price:"€8-15",desc:"Zachte knuffels voor troost",img:"imagen7.jpg"},
+{id:8,name:"Babymonitor",cat:"Veiligheid",price:"€40-80",desc:"Video babymonitor met app",img:"imagen8.jpg"},
+{id:9,name:"Luiertas",cat:"Onderweg",price:"€20-35",desc:"Praktische luiertas met vakjes",img:"imagen9.jpg"},
+{id:10,name:"Lakentjes",cat:"Slapen",price:"€12-20",desc:"Katoenen hoeslakens voor ledikant",img:"imagen10.jpg"},
+{id:11,name:"Slaapzak",cat:"Slapen",price:"€18-30",desc:"Veilige babyslaapzak TOG 2.5",img:"imagen11.jpg"},
+{id:12,name:"Voedingskussen",cat:"Voeding",price:"€25-40",desc:"Ergonomisch voedingskussen",img:"imagen12.jpg"},
+{id:13,name:"Verzorgingsset",cat:"Verzorging",price:"€15-25",desc:"Complete set: kam, borstel, nagelvijl",img:"imagen13.jpg"},
+{id:14,name:"Wandelwagen",cat:"Onderweg",price:"€200-400",desc:"Moderne wandelwagen 3-in-1",img:"imagen14.jpg"},
+{id:15,name:"Maxicosi",cat:"Onderweg",price:"€150-300",desc:"Veilig autostoeltje groep 0+",img:"imagen15.jpg"},
+{id:16,name:"Babygym",cat:"Spelen",price:"€30-50",desc:"Houten babygym met hangertjes",img:"imagen16.jpg"},
+{id:17,name:"Bijtringen",cat:"Spelen",price:"€6-12",desc:"Siliconen bijtringen BPA-vrij",img:"imagen17.jpg"},
+{id:18,name:"Rammelaar",cat:"Spelen",price:"€5-10",desc:"Zachte rammelaar met belletje",img:"imagen18.jpg"},
+{id:19,name:"Nachtlampje",cat:"Slapen",price:"€12-20",desc:"Dimbaar LED nachtlampje",img:"imagen19.jpg"},
+{id:20,name:"Wiegje",cat:"Slapen",price:"€80-150",desc:"Houten wiegje met matras",img:"imagen20.jpg"},
+{id:21,name:"Box",cat:"Spelen",price:"€60-120",desc:"Veilige box met zachte bodem",img:"imagen21.jpg"},
+{id:22,name:"Commode",cat:"Verzorging",price:"€100-200",desc:"Commode met aankleedkussen",img:"imagen22.jpg"},
+{id:23,name:"Babykamer decoratie",cat:"Decoratie",price:"€15-30",desc:"Wandstickers en slinger",img:"imagen23.jpg"},
+{id:24,name:"Thermometer",cat:"Gezondheid",price:"€10-20",desc:"Digitale thermometer",img:"imagen24.jpg"},
+{id:25,name:"Draagdoek",cat:"Onderweg",price:"€30-60",desc:"Ergonomische draagdoek",img:"imagen25.jpg"},
+{id:26,name:"Speelgoed",cat:"Spelen",price:"€10-25",desc:"Educatief speelgoed 0-6 mnd",img:"imagen26.jpg"},
+{id:27,name:"Muziekmobiel",cat:"Slapen",price:"€20-40",desc:"Mobiel met lichtjes en muziek",img:"imagen27.jpg"},
+{id:28,name:"Badthermometer",cat:"Verzorging",price:"€8-15",desc:"Waterthermometer speeltje",img:"imagen28.jpg"},
+{id:29,name:"Sterilisator",cat:"Voeding",price:"€30-60",desc:"Elektrische flessensterilisator",img:"imagen29.jpg"},
+{id:30,name:"Slabbetjes",cat:"Voeding",price:"€8-15",desc:"Set van 5 waterdichte slabbetjes",img:"imagen30.jpg"},
+{id:31,name:"Waskussenhoes",cat:"Verzorging",price:"€10-18",desc:"Badstof aankleedkussen hoes",img:"imagen31.jpg"},
+{id:32,name:"Speendoekjes",cat:"Verzorging",price:"€10-18",desc:"Set van 3 speendoekjes",img:"imagen32.jpg"},
+{id:33,name:"Hydrofiele doeken",cat:"Verzorging",price:"€12-20",desc:"Set van 5 muslin doeken",img:"imagen33.jpg"},
+{id:34,name:"Cadeaubon",cat:"Diversen",price:"Vrij",desc:"Cadeaubon babywinkel",img:"imagen34.jpg"}
 ];
-
-const grid = document.getElementById("grid");
-const reservedRef = ref(db, "reserved");
-
-onValue(reservedRef, (snapshot) => {
-  const reserved = snapshot.val() || {};
-  grid.innerHTML = "";
-  items.forEach(item => {
-    const res = reserved[item.id];
-    const card = document.createElement("div");
-    card.className = "item" + (res ? " reserved" : "");
-    
-    card.innerHTML = `
-      <img class="item-img" src="${IMG_BASE}${item.img}" alt="${item.name}" loading="lazy">
-      <span class="price">${item.price}</span>
-      ${res ? `<span class="badge">${res}</span>` : ""}
-      <div class="item-content">
-        <h3>${item.name}</h3>
-        <span class="tag">${item.cat}</span>
-        <p class="desc">${item.desc}</p>
-        <div class="controls">
-          ${!res ? `<button class="primary" data-id="${item.id}">Reserveren</button>` : 
-                   `<button class="danger" data-id="${item.id}">Annuleren</button>`}
-        </div>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-
-  grid.querySelectorAll("button").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const id = btn.dataset.id;
-      const current = reserved[id];
-      if (current) {
-        if (confirm(`Dit cadeau is gereserveerd door ${current}. Wil je annuleren?`)) {
-          set(ref(db, `reserved/${id}`), null);
-        }
-      } else {
-        const name = prompt("Je naam:");
-        if (name && name.trim()) {
-          set(ref(db, `reserved/${id}`), name.trim());
-        }
-      }
-    });
-  });
-});
+const BASE="https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/";
+const KEY="babyshower_reservations";
+let reservations=JSON.parse(localStorage.getItem(KEY)||"{}");
+function render(){
+const list=document.getElementById("list");
+list.innerHTML=products.map(p=>{
+const res=reservations[p.id];
+const reserved=!!res;
+return`<div class="item ${reserved?'reserved':''}">
+<img class="item-img" src="${BASE}${p.img}" alt="${p.name}" loading="lazy">
+<span class="price">${p.price}</span>
+${reserved?`<span class="badge">Gereserveerd door ${res}</span>`:""}
+<div class="item-content">
+<span class="tag">${p.cat}</span>
+<h3>${p.name}</h3>
+<p class="desc">${p.desc}</p>
+<div class="controls">
+${reserved?`
+<button class="muted" disabled>Gereserveerd</button>
+<button class="danger" onclick="unreserve(${p.id})">Annuleren</button>
+`:`<button class="primary" onclick="reserve(${p.id})">Reserveren</button>`}
+</div>
+</div>
+</div>`;
+}).join("");
+}
+function reserve(id){
+const name=prompt("Wat is je naam?");
+if(!name||!name.trim())return;
+reservations[id]=name.trim();
+localStorage.setItem(KEY,JSON.stringify(reservations));
+render();
+}
+function unreserve(id){
+if(!confirm("Weet je zeker dat je de reservering wilt annuleren?"))return;
+delete reservations[id];
+localStorage.setItem(KEY,JSON.stringify(reservations));
+render();
+}
+render();
 </script>
 </body>
 </html>
