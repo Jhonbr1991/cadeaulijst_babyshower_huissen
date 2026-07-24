@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#88c8ee" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#88c8ee"/>
 <title>Babyshower — Cadeaulijst voor onze zoon</title>
 <style>
-:root{--luchtblauw:#bfe5fa;--hemel:#eaf8ff;--blauw:#4aa7dc;--blauw-donker:#155b87;--marine:#123b5a;--ijs:#f5fbff;--zand:#fff7e6;--goud:#d7a94a;--grijs:#64748b;--rood:#dc4c4c;--wit:#ffffff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Cantarell,Helvetica,Arial,sans-serif;color:#17324a;background:linear-gradient(180deg,var(--hemel),#fff 44%,#f8fbfd)}.hero{position:relative;overflow:hidden;text-align:center;padding:42px 16px 76px;color:var(--marine);background:radial-gradient(110px 110px at 9% 16%,rgba(255,255,255,.78),transparent 62%),radial-gradient(145px 145px at 90% 11%,rgba(255,255,255,.76),transparent 62%),linear-gradient(180deg,#91d2f3 0%,#dff4ff 76%,#f8fcff 100%)}.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.42);pointer-events:none}.hero::before{width:210px;height:210px;left:-85px;bottom:-95px}.hero::after{width:260px;height:260px;right:-105px;bottom:-125px}.baby-icon{display:inline-grid;place-items:center;width:58px;height:58px;margin-bottom:10px;border:1px solid rgba(21,91,135,.14);border-radius:50%;background:rgba(255,255,255,.76);box-shadow:0 8px 20px rgba(21,91,135,.10);font-size:29px}.hero h1{margin:0;font-size:clamp(34px,6vw,60px);line-height:1.04;letter-spacing:-.035em}.hero h2{margin:11px 0 7px;font-size:clamp(18px,3vw,27px);font-weight:750}.subtitle{max-width:650px;margin:0 auto 18px;color:#315d78;font-size:15px}.event-info,.place{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:9px}.pill{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid rgba(21,91,135,.16);border-radius:999px;background:rgba(255,255,255,.86);color:#194a6a;font-size:13px;text-decoration:none;box-shadow:0 4px 12px rgba(21,91,135,.07)}a.pill:hover{background:#fff;transform:translateY(-1px)}.card{position:relative;width:min(1040px,92%);margin:-48px auto 42px;padding:20px 20px 10px;border:2px solid #ccecff;border-radius:24px;background:rgba(255,255,255,.98);box-shadow:0 18px 45px rgba(21,91,135,.15)}.intro{padding:16px 18px;border:1px dashed #6eb9e7;border-radius:17px;background:linear-gradient(135deg,#f3fbff,#fffdf6);line-height:1.55}.intro p{margin:0}.intro .small{display:block;margin-top:7px;color:var(--grijs);font-size:13px}.section-title{margin:30px 0 2px;text-align:center;color:var(--marine);font-size:22px}.section-subtitle{margin:0 0 13px;text-align:center;color:var(--grijs);font-size:13px}.divider{height:1px;margin:16px 0;background:linear-gradient(90deg,transparent,#bfe5fa,transparent)}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px;margin:12px 0 19px}.item{position:relative;display:flex;flex-direction:column;min-height:340px;padding:0;border:1px solid #cce8f8;border-radius:17px;background:#fff;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.item:hover{transform:translateY(-2px);border-color:#85c8ec;box-shadow:0 10px 22px rgba(21,91,135,.09)}.item.reserved{opacity:.78;background:#f8fafc}.item-img{width:100%;height:200px;object-fit:cover;background:linear-gradient(135deg,#f0f9ff,#e0f2fe)}.item-content{flex:1;display:flex;flex-direction:column;padding:14px 13px 12px}.item h3{max-width:78%;margin:0 0 7px;color:#194f73;font-size:16px;line-height:1.25}.tag{align-self:flex-start;display:inline-block;padding:3px 8px;margin-bottom:6px;border:1px solid #b9def2;border-radius:999px;background:#e9f7ff;color:#185a83;font-size:12px}.price{position:absolute;top:168px;right:10px;padding:5px 10px;border:1px solid #ead190;border-radius:999px;background:rgba(255,247,217,.95);color:#7a5a13;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.08)}.badge{position:absolute;top:10px;right:10px;max-width:44%;overflow:hidden;padding:3px 8px;border:1px solid #ead190;border-radius:999px;background:rgba(255,247,217,.95);color:#7a5a13;font-size:11px;text-overflow:ellipsis;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08)}.desc{flex:1;min-height:38px;margin:7px 0 11px;color:var(--grijs);font-size:13px;line-height:1.4}.controls{display:flex;flex-wrap:wrap;gap:8px}button{padding:8px 11px;border:2px solid #63b4e2;border-radius:12px;background:#fff;color:#18577e;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s ease}button:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 12px rgba(21,91,135,.12)}button:disabled{cursor:not-allowed;opacity:.62}.primary{border-color:#2f90c8;background:#4aa7dc;color:#fff}.muted{border-color:#d7e3ea;color:#425b6b}.danger{border-color:#efaaaa;color:#a82f2f}.banner{margin-bottom:7px;padding:10px 0;text-align:center}.banner span{display:inline-block;padding:7px 11px;border:1px solid #c7e7f8;border-radius:999px;background:#eff9ff;color:#285d7e;font-size:12px}footer{padding:7px 0 20px;color:var(--grijs);text-align:center;font-size:12px}@media (max-width:620px){.hero{padding-top:28px}.hero h1{font-size:39px}.card{width:94%;padding:15px 13px 8px}.row{grid-template-columns:1fr}.item{min-height:auto}.item-img{height:220px}}
+:root{--luchtblauw:#bfe5fa;--hemel:#eaf8ff;--blauw:#4aa7dc;--marine:#123b5a;--grijs:#64748b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#17324a;background:linear-gradient(180deg,#eaf8ff,#fff 44%,#f8fbfd)}
+.hero{position:relative;overflow:hidden;text-align:center;padding:42px 16px 76px;color:#123b5a;background:radial-gradient(110px 110px at 9% 16%,rgba(255,255,255,.78),transparent 62%),radial-gradient(145px 145px at 90% 11%,rgba(255,255,255,.76),transparent 62%),linear-gradient(180deg,#91d2f3 0%,#dff4ff 76%,#f8fcff 100%)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.42);pointer-events:none}
+.hero::before{width:210px;height:210px;left:-85px;bottom:-95px}
+.hero::after{width:260px;height:260px;right:-105px;bottom:-125px}
+.baby-icon{display:inline-grid;place-items:center;width:58px;height:58px;margin-bottom:10px;border:1px solid rgba(21,91,135,.14);border-radius:50%;background:rgba(255,255,255,.76);box-shadow:0 8px 20px rgba(21,91,135,.10);font-size:29px}
+.hero h1{margin:0;font-size:clamp(34px,6vw,60px);line-height:1.04;letter-spacing:-.035em}
+.hero h2{margin:11px 0 7px;font-size:clamp(18px,3vw,27px);font-weight:750}
+.subtitle{max-width:650px;margin:0 auto 18px;color:#315d78;font-size:15px}
+.event-info,.place{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:9px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid rgba(21,91,135,.16);border-radius:999px;background:rgba(255,255,255,.86);color:#194a6a;font-size:13px;text-decoration:none;box-shadow:0 4px 12px rgba(21,91,135,.07)}
+a.pill:hover{background:#fff;transform:translateY(-1px)}
+.card{position:relative;width:min(1040px,92%);margin:-48px auto 42px;padding:20px 20px 10px;border:2px solid #ccecff;border-radius:24px;background:rgba(255,255,255,.98);box-shadow:0 18px 45px rgba(21,91,135,.15)}
+.intro{padding:16px 18px;border:1px dashed #6eb9e7;border-radius:17px;background:linear-gradient(135deg,#f3fbff,#fffdf6);line-height:1.55}
+.intro p{margin:0}
+.intro .small{display:block;margin-top:7px;color:#64748b;font-size:13px}
+.section-title{margin:30px 0 2px;text-align:center;color:#123b5a;font-size:22px}
+.section-subtitle{margin:0 0 13px;text-align:center;color:#64748b;font-size:13px}
+.divider{height:1px;margin:16px 0;background:linear-gradient(90deg,transparent,#bfe5fa,transparent)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px;margin:12px 0 19px}
+.item{position:relative;display:flex;flex-direction:column;min-height:340px;padding:0;border:1px solid #cce8f8;border-radius:17px;background:#fff;overflow:hidden;transition:transform .18s,box-shadow .18s,border-color .18s}
+.item:hover{transform:translateY(-2px);border-color:#85c8ec;box-shadow:0 10px 22px rgba(21,91,135,.09)}
+.item.reserved{opacity:.78;background:#f8fafc}
+.item-img{width:100%;height:200px;object-fit:cover;background:linear-gradient(135deg,#f0f9ff,#e0f2fe)}
+.item-content{flex:1;display:flex;flex-direction:column;padding:14px 13px 12px}
+.item h3{max-width:78%;margin:0 0 7px;color:#194f73;font-size:16px;line-height:1.25}
+.tag{align-self:flex-start;display:inline-block;padding:3px 8px;margin-bottom:6px;border:1px solid #b9def2;border-radius:999px;background:#e9f7ff;color:#185a83;font-size:12px}
+.price{position:absolute;top:168px;right:10px;padding:5px 10px;border:1px solid #ead190;border-radius:999px;background:rgba(255,247,217,.95);color:#7a5a13;font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.badge{position:absolute;top:10px;right:10px;max-width:44%;overflow:hidden;padding:3px 8px;border:1px solid #ead190;border-radius:999px;background:rgba(255,247,217,.95);color:#7a5a13;font-size:11px;text-overflow:ellipsis;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.desc{flex:1;min-height:38px;margin:7px 0 11px;color:#64748b;font-size:13px;line-height:1.4}
+.controls{display:flex;flex-wrap:wrap;gap:8px}
+button{padding:8px 11px;border:2px solid #63b4e2;border-radius:12px;background:#fff;color:#18577e;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+button:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 4px 12px rgba(21,91,135,.12)}
+button:disabled{cursor:not-allowed;opacity:.62}
+.primary{border-color:#2f90c8;background:#4aa7dc;color:#fff}
+.muted{border-color:#d7e3ea;color:#425b6b}
+.danger{border-color:#efaaaa;color:#a82f2f}
+.banner{margin-bottom:7px;padding:10px 0;text-align:center}
+.banner span{display:inline-block;padding:7px 11px;border:1px solid #c7e7f8;border-radius:999px;background:#eff9ff;color:#285d7e;font-size:12px}
+footer{padding:7px 0 20px;color:#64748b;text-align:center;font-size:12px}
+@media (max-width:620px){.hero{padding-top:28px}.hero h1{font-size:39px}.card{width:94%;padding:15px 13px 8px}.row{grid-template-columns:1fr}.item{min-height:auto}.item-img{height:220px}}
 </style>
 </head>
 <body>
@@ -36,7 +79,7 @@
 <div class="divider"></div>
 <div class="row" id="list"></div>
 <div class="divider"></div>
-<p style="text-align:center;color:var(--grijs);font-size:13px;margin:14px 0">Reserveringen worden direct opgeslagen. Bij een gekozen cadeau verschijnt "Gereserveerd door ...".</p>
+<p style="text-align:center;color:#64748b;font-size:13px;margin:14px 0">Reserveringen worden direct opgeslagen. Bij een gekozen cadeau verschijnt "Gereserveerd door ...".</p>
 </main>
 <footer>© 2025 — Gemaakt met ❤️ voor onze zoon</footer>
 <script>
@@ -44,75 +87,108 @@ const products=[
 {id:1,name:"Luiers maat 1",cat:"Verzorging",price:"€15-25",desc:"Zachte wegwerpluiers voor pasgeborenen",img:"imagen1.jpg"},
 {id:2,name:"Flesjes",cat:"Voeding",price:"€12-20",desc:"Anti-koliek babyflesjes met speen",img:"imagen2.jpg"},
 {id:3,name:"Rompertjes",cat:"Kleding",price:"€8-15",desc:"Katoenen rompertjes maat 56-62",img:"imagen3.jpg"},
-{id:4,name:"Badcape",cat:"Verzorging",price:"€10-18",desc:"Zachte badcape met capuchon",img:"imagen4.jpg"},
-{id:5,name:"Babydoekjes",cat:"Verzorging",price:"€5-10",desc:"Hypoallergene billendoekjes",img:"imagen5.jpg"},
-{id:6,name:"Speelkleed",cat:"Spelen",price:"€25-40",desc:"Kleurrijk speelkleed met speeltjes",img:"imagen6.jpg"},
-{id:7,name:"Knuffels",cat:"Spelen",price:"€8-15",desc:"Zachte knuffels voor troost",img:"imagen7.jpg"},
-{id:8,name:"Babymonitor",cat:"Veiligheid",price:"€40-80",desc:"Video babymonitor met app",img:"imagen8.jpg"},
-{id:9,name:"Luiertas",cat:"Onderweg",price:"€20-35",desc:"Praktische luiertas met vakjes",img:"imagen9.jpg"},
-{id:10,name:"Lakentjes",cat:"Slapen",price:"€12-20",desc:"Katoenen hoeslakens voor ledikant",img:"imagen10.jpg"},
-{id:11,name:"Slaapzak",cat:"Slapen",price:"€18-30",desc:"Veilige babyslaapzak TOG 2.5",img:"imagen11.jpg"},
-{id:12,name:"Voedingskussen",cat:"Voeding",price:"€25-40",desc:"Ergonomisch voedingskussen",img:"imagen12.jpg"},
-{id:13,name:"Verzorgingsset",cat:"Verzorging",price:"€15-25",desc:"Complete set: kam, borstel, nagelvijl",img:"imagen13.jpg"},
-{id:14,name:"Wandelwagen",cat:"Onderweg",price:"€200-400",desc:"Moderne wandelwagen 3-in-1",img:"imagen14.jpg"},
-{id:15,name:"Maxicosi",cat:"Onderweg",price:"€150-300",desc:"Veilig autostoeltje groep 0+",img:"imagen15.jpg"},
-{id:16,name:"Babygym",cat:"Spelen",price:"€30-50",desc:"Houten babygym met hangertjes",img:"imagen16.jpg"},
-{id:17,name:"Bijtringen",cat:"Spelen",price:"€6-12",desc:"Siliconen bijtringen BPA-vrij",img:"imagen17.jpg"},
-{id:18,name:"Rammelaar",cat:"Spelen",price:"€5-10",desc:"Zachte rammelaar met belletje",img:"imagen18.jpg"},
-{id:19,name:"Nachtlampje",cat:"Slapen",price:"€12-20",desc:"Dimbaar LED nachtlampje",img:"imagen19.jpg"},
-{id:20,name:"Wiegje",cat:"Slapen",price:"€80-150",desc:"Houten wiegje met matras",img:"imagen20.jpg"},
-{id:21,name:"Box",cat:"Spelen",price:"€60-120",desc:"Veilige box met zachte bodem",img:"imagen21.jpg"},
-{id:22,name:"Commode",cat:"Verzorging",price:"€100-200",desc:"Commode met aankleedkussen",img:"imagen22.jpg"},
-{id:23,name:"Babykamer decoratie",cat:"Decoratie",price:"€15-30",desc:"Wandstickers en slinger",img:"imagen23.jpg"},
-{id:24,name:"Thermometer",cat:"Gezondheid",price:"€10-20",desc:"Digitale thermometer",img:"imagen24.jpg"},
-{id:25,name:"Draagdoek",cat:"Onderweg",price:"€30-60",desc:"Ergonomische draagdoek",img:"imagen25.jpg"},
-{id:26,name:"Speelgoed",cat:"Spelen",price:"€10-25",desc:"Educatief speelgoed 0-6 mnd",img:"imagen26.jpg"},
-{id:27,name:"Muziekmobiel",cat:"Slapen",price:"€20-40",desc:"Mobiel met lichtjes en muziek",img:"imagen27.jpg"},
-{id:28,name:"Badthermometer",cat:"Verzorging",price:"€8-15",desc:"Waterthermometer speeltje",img:"imagen28.jpg"},
-{id:29,name:"Sterilisator",cat:"Voeding",price:"€30-60",desc:"Elektrische flessensterilisator",img:"imagen29.jpg"},
-{id:30,name:"Slabbetjes",cat:"Voeding",price:"€8-15",desc:"Set van 5 waterdichte slabbetjes",img:"imagen30.jpg"},
-{id:31,name:"Waskussenhoes",cat:"Verzorging",price:"€10-18",desc:"Badstof aankleedkussen hoes",img:"imagen31.jpg"},
-{id:32,name:"Speendoekjes",cat:"Verzorging",price:"€10-18",desc:"Set van 3 speendoekjes",img:"imagen32.jpg"},
-{id:33,name:"Hydrofiele doeken",cat:"Verzorging",price:"€12-20",desc:"Set van 5 muslin doeken",img:"imagen33.jpg"},
-{id:34,name:"Cadeaubon",cat:"Diversen",price:"Vrij",desc:"Cadeaubon babywinkel",img:"imagen34.jpg"}
+{id:4,name:"Badcape",cat:"Verzorging",price:"€18-28",desc:"Zachte badcape met capuchon",img:"imagen4.jpg"},
+{id:5,name:"Babydoekjes",cat:"Verzorging",price:"€10-18",desc:"Vochtige doekjes voor gevoelige huid",img:"imagen5.jpg"},
+{id:6,name:"Speelkleed",cat:"Speelgoed",price:"€35-50",desc:"Kleurrijk speelkleed met activiteiten",img:"imagen6.jpg"},
+{id:7,name:"Knuffels",cat:"Speelgoed",price:"€10-20",desc:"Zachte knuffel voor troost en gezelligheid",img:"imagen7.jpg"},
+{id:8,name:"Babymonitor",cat:"Veiligheid",price:"€40-70",desc:"Video babymonitor met nachtzicht",img:"imagen8.jpg"},
+{id:9,name:"Luiertas",cat:"Accessoires",price:"€25-45",desc:"Praktische luiertas met veel vakjes",img:"imagen9.jpg"},
+{id:10,name:"Lakentjes",cat:"Slaapkamer",price:"€12-22",desc:"Zachte katoenen lakentjes voor ledikant",img:"imagen10.jpg"},
+{id:11,name:"Slaapzak",cat:"Slaapkamer",price:"€20-35",desc:"Warme slaapzak voor veilige nachtrust",img:"imagen11.jpg"},
+{id:12,name:"Voedingskussens",cat:"Voeding",price:"€30-50",desc:"Ergonomisch kussen voor borstvoeding",img:"imagen12.jpg"},
+ymonitor met nachtzicht",img:"imagen8.jpg"},
+{id:9,name:"Luiertas",cat:"Verzorging",price:"€25-45",desc:"Praktische tas voor onderweg",img:"imagen9.jpg"},
+{id:10,name:"Lakentjes",cat:"Slaapkamer",price:"€15-25",desc:"Zachte katoenen lakens voor wiegje",img:"imagen10.jpg"},
+{id:11,name:"Slaapzak",cat:"Slaapkamer",price:"€20-35",desc:"Veilige slaapzak voor baby's",img:"imagen11.jpg"},
+{id:12,name:"Voedingskussen",cat:"Voeding",price:"€30-50",desc:"Ergonomisch kussen voor borstvoeding",img:"imagen12.jpg"},
+{id:13,name:"Verzorgingsset",cat:"Verzorging",price:"€15-30",desc:"Complete set met nagelschaartje, kam en borstel",img:"imagen13.jpg"},
+{id:14,name:"Wandelwagen",cat:"Vervoer",price:"€150-300",desc:"Comfortabele wandelwagen met regenkapje",img:"imagen14.jpg"},
+{id:15,name:"Maxi-Cosi",cat:"Vervoer",price:"€100-200",desc:"Veilig autostoeltje voor pasgeborenen",img:"imagen15.jpg"},
+{id:16,name:"Babygym",cat:"Speelgoed",price:"€30-50",desc:"Speelboog met hangend speelgoed",img:"imagen16.jpg"},
+{id:17,name:"Bijtringen",cat:"Speelgoed",price:"€8-15",desc:"Veilige bijtringen voor doorkomende tandjes",img:"imagen17.jpg"},
+{id:18,name:"Rammelaar",cat:"Speelgoed",price:"€6-12",desc:"Kleurrijke rammelaar voor zintuiglijke ontwikkeling",img:"imagen18.jpg"},
+{id:19,name:"Nachtlampje",cat:"Slaapkamer",price:"€15-25",desc:"Zacht nachtlampje voor de babykamer",img:"imagen19.jpg"},
+{id:20,name:"Wiegje",cat:"Slaapkamer",price:"€80-150",desc:"Comfortabel wiegje met matras",img:"imagen20.jpg"},
+{id:21,name:"Box",cat:"Veiligheid",price:"€60-120",desc:"Veilige speelbox met zachte bodem",img:"imagen21.jpg"},
+{id:22,name:"Commode",cat:"Slaapkamer",price:"€100-200",desc:"Commode met aankleedkussen",img:"imagen22.jpg"},
+{id:23,name:"Babykamer decoratie",cat:"Slaapkamer",price:"€20-40",desc:"Wanddecoratie voor de babykamer",img:"imagen23.jpg"},
+{id:24,name:"Kruikje",cat:"Verzorging",price:"€12-20",desc:"Warmwaterkruik tegen buikpijn",img:"imagen24.jpg"},
+{id:25,name:"Thermometer",cat:"Veiligheid",price:"€15-30",desc:"Digitale thermometer voor veilig temperatuur meten",img:"imagen25.jpg"},
+{id:26,name:"Badthermometer",cat:"Verzorging",price:"€8-15",desc:"Thermometer voor veilige badtemperatuur",img:"imagen26.jpg"},
+{id:27,name:"Fopspenen",cat:"Voeding",price:"€5-12",desc:"Orthodontische fopspenen",img:"imagen27.jpg"},
+{id:28,name:"Slabbetjes",cat:"Voeding",price:"€10-18",desc:"Set zachte slabbetjes",img:"imagen28.jpg"},
+{id:29,name:"Pyjama's",cat:"Kleding",price:"€12-22",desc:"Comfortabele pyjama's maat 56-62",img:"imagen29.jpg"},
+{id:30,name:"Sokjes",cat:"Kleding",price:"€6-12",desc:"Warme sokjes voor kleine voetjes",img:"imagen30.jpg"},
+{id:31,name:"Mutsjes",cat:"Kleding",price:"€8-15",desc:"Zachte mutsjes tegen de kou",img:"imagen31.jpg"},
+{id:32,name:"Handschoentjes",cat:"Kleding",price:"€5-10",desc:"Handschoentjes tegen krabben",img:"imagen32.jpg"},
+{id:33,name:"Babyhanddoeken",cat:"Verzorging",price:"€12-20",desc:"Zachte handdoeken met capuchon",img:"imagen33.jpg"},
+{id:34,name:"Babyshampoo set",cat:"Verzorging",price:"€15-25",desc:"Milde shampoo en wasgel voor baby's",img:"imagen34.jpg"}
 ];
-const BASE="https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/";
-const KEY="babyshower_reservations";
-let reservations=JSON.parse(localStorage.getItem(KEY)||"{}");
+const KEY='bsr_v1';
+function load(){
+try{
+const s=localStorage.getItem(KEY);
+return s?JSON.parse(s):{};
+}catch(e){return{}}
+}
+function save(d){
+try{
+localStorage.setItem(KEY,JSON.stringify(d));
+}catch(e){
+console.error('Opslaan mislukt',e);
+}
+}
 function render(){
-const list=document.getElementById("list");
-list.innerHTML=products.map(p=>{
-const res=reservations[p.id];
-const reserved=!!res;
-return`<div class="item ${reserved?'reserved':''}">
-<img class="item-img" src="${BASE}${p.img}" alt="${p.name}" loading="lazy">
+const data=load();
+const list=document.getElementById('list');
+const cats={};
+products.forEach(p=>{
+if(!cats[p.cat])cats[p.cat]=[];
+cats[p.cat].push(p);
+});
+list.innerHTML='';
+Object.keys(cats).sort().forEach(cat=>{
+const sec=document.createElement('div');
+sec.style.cssText='grid-column:1/-1;margin:20px 0 8px';
+sec.innerHTML=`<h4 style="margin:0;color:#123b5a;font-size:18px">📦 ${cat}</h4>`;
+list.appendChild(sec);
+cats[cat].forEach(p=>{
+const res=data[p.id];
+const div=document.createElement('div');
+div.className='item'+(res?' reserved':'');
+div.innerHTML=`
+<img class="item-img" src="imagens/${p.img}" alt="${p.name}" loading="lazy"/>
 <span class="price">${p.price}</span>
-${reserved?`<span class="badge">Gereserveerd door ${res}</span>`:""}
+${res?`<span class="badge">${res}</span>`:''}
 <div class="item-content">
 <span class="tag">${p.cat}</span>
 <h3>${p.name}</h3>
 <p class="desc">${p.desc}</p>
 <div class="controls">
-${reserved?`
-<button class="muted" disabled>Gereserveerd</button>
-<button class="danger" onclick="unreserve(${p.id})">Annuleren</button>
-`:`<button class="primary" onclick="reserve(${p.id})">Reserveren</button>`}
+${res
+?`<button class="danger" onclick="unreserve(${p.id})">Annuleren</button>`
+:`<button class="primary" onclick="reserve(${p.id})">Reserveren</button>`
+}
 </div>
 </div>
-</div>`;
-}).join("");
+`;
+list.appendChild(div);
+});
+});
 }
 function reserve(id){
-const name=prompt("Wat is je naam?");
+const name=prompt('Je naam:');
 if(!name||!name.trim())return;
-reservations[id]=name.trim();
-localStorage.setItem(KEY,JSON.stringify(reservations));
+const data=load();
+data[id]=name.trim();
+save(data);
 render();
 }
 function unreserve(id){
-if(!confirm("Weet je zeker dat je de reservering wilt annuleren?"))return;
-delete reservations[id];
-localStorage.setItem(KEY,JSON.stringify(reservations));
+if(!confirm('Weet je zeker dat je deze reservering wilt annuleren?'))return;
+const data=load();
+delete data[id];
+save(data);
 render();
 }
 render();
