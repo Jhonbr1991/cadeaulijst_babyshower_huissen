@@ -1,418 +1,591 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadeaulijst Babyshower</title>
-  <style>
-    * {
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-    body {
-      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-      background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height:100vh;
-      padding:20px;
-    }
-    .container {
-      max-width:1200px;
-      margin:0 auto;
-      background:#fff;
-      border-radius:16px;
-      box-shadow:0 20px 60px rgba(0,0,0,0.3);
-      overflow:hidden;
-    }
-    .header {
-      background:linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      color:#fff;
-      padding:40px 20px;
-      text-align:center;
-    }
-    .header h1 {
-      font-size:36px;
-      margin-bottom:10px;
-      text-shadow:2px 2px 4px rgba(0,0,0,0.2);
-    }
-    .header p {
-      font-size:18px;
-      opacity:0.95;
-    }
-    .intro {
-      background:linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-      padding:20px;
-      margin:20px;
-      border-radius:12px;
-      border-left:5px solid #f5576c;
-    }
-    .intro p {
-      font-size:16px;
-      line-height:1.6;
-      color:#334155;
-    }
-    .filters {
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      padding:20px;
-      justify-content:center;
-      background:#f8fafc;
-      border-bottom:2px solid #e2e8f0;
-    }
-    .filter-btn {
-      padding:10px 20px;
-      border:2px solid #cbd5e1;
-      background:#fff;
-      border-radius:25px;
-      cursor:pointer;
-      font-size:14px;
-      font-weight:600;
-      color:#475569;
-      transition:all 0.3s ease;
-    }
-    .filter-btn:hover {
-      background:#f1f5f9;
-      border-color:#94a3b8;
-      transform:translateY(-2px);
-    }
-    .filter-btn.active {
-      background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color:#fff;
-      border-color:#667eea;
-    }
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
-      gap:20px;
-      padding:20px;
-    }
-    .card {
-      background:#fff;
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 4px 6px rgba(0,0,0,0.1);
-      transition:all 0.3s ease;
-      border:2px solid #e2e8f0;
-    }
-    .card:hover {
-      transform:translateY(-5px);
-      box-shadow:0 12px 24px rgba(0,0,0,0.15);
-    }
-    .card-img {
-      width:100%;
-      height:200px;
-      background-size:cover;
-      background-position:center;
-      background-color:#f1f5f9;
-    }
-    .card-body {
-      padding:16px;
-    }
-    .card-title {
-      font-size:18px;
-      font-weight:700;
-      color:#1e293b;
-      margin-bottom:8px;
-      line-height:1.3;
-    }
-    .card-note {
-      font-size:14px;
-      color:#64748b;
-      margin-bottom:12px;
-      line-height:1.5;
-    }
-    .card-btn {
-      width:100%;
-      padding:12px;
-      border:none;
-      border-radius:8px;
-      font-size:15px;
-      font-weight:700;
-      cursor:pointer;
-      transition:all 0.3s ease;
-      text-transform:uppercase;
-      letter-spacing:0.5px;
-    }
-    .btn-reserve {
-      background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color:#fff;
-    }
-    .btn-reserve:hover {
-      background:linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-      transform:scale(1.05);
-    }
-    .btn-reserved {
-      background:#94a3b8;
-      color:#fff;
-      cursor:not-allowed;
-    }
-    .modal {
-      display:none;
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,0.7);
-      z-index:1000;
-      justify-content:center;
-      align-items:center;
-      padding:20px;
-    }
-    .modal.show {
-      display:flex;
-    }
-    .modal-content {
-      background:#fff;
-      border-radius:16px;
-      padding:30px;
-      max-width:400px;
-      width:100%;
-      box-shadow:0 20px 60px rgba(0,0,0,0.3);
-      animation:slideIn 0.3s ease;
-    }
-    @keyframes slideIn {
-      from {
-        transform:translateY(-50px);
-        opacity:0;
-      }
-      to {
-        transform:translateY(0);
-        opacity:1;
-      }
-    }
-    .modal-header {
-      font-size:24px;
-      font-weight:700;
-      color:#1e293b;
-      margin-bottom:20px;
-      text-align:center;
-    }
-    .modal-body input {
-      width:100%;
-      padding:12px;
-      border:2px solid #e2e8f0;
-      border-radius:8px;
-      font-size:15px;
-      margin-bottom:20px;
-      transition:border 0.3s ease;
-    }
-    .modal-body input:focus {
-      outline:none;
-      border-color:#667eea;
-    }
-    .modal-footer {
-      display:flex;
-      gap:10px;
-    }
-    .modal-footer button {
-      flex:1;
-      padding:12px;
-      border:none;
-      border-radius:8px;
-      font-size:15px;
-      font-weight:700;
-      cursor:pointer;
-      transition:all 0.3s ease;
-      text-transform:uppercase;
-    }
-    .btn-confirm {
-      background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color:#fff;
-    }
-    .btn-confirm:hover {
-      background:linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-    }
-    .btn-cancel {
-      background:#e2e8f0;
-      color:#475569;
-    }
-    .btn-cancel:hover {
-      background:#cbd5e1;
-    }
-    @media (max-width:768px) {
-      .header h1 {
-        font-size:28px;
-      }
-      .header p {
-        font-size:16px;
-      }
-      .grid {
-        grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
-        gap:15px;
-        padding:15px;
-      }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#88c8ee" />
+<title>Babyshower — Cadeaulijst voor onze zoon</title>
+<style>
+  :root {
+    --luchtblauw:#bfe5fa;
+    --hemel:#eaf8ff;
+    --blauw:#4aa7dc;
+    --blauw-donker:#155b87;
+    --marine:#123b5a;
+    --ijs:#f5fbff;
+    --zand:#fff7e6;
+    --goud:#d7a94a;
+    --grijs:#64748b;
+    --rood:#dc4c4c;
+    --wit:#ffffff;
+  }
+
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    margin:0;
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,Cantarell,Helvetica,Arial,sans-serif;
+    color:#17324a;
+    background:linear-gradient(180deg,var(--hemel),#fff 44%,#f8fbfd);
+  }
+
+  .hero {
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+    padding:42px 16px 76px;
+    color:var(--marine);
+    background:
+      radial-gradient(110px 110px at 9% 16%,rgba(255,255,255,.78),transparent 62%),
+      radial-gradient(145px 145px at 90% 11%,rgba(255,255,255,.76),transparent 62%),
+      linear-gradient(180deg,#91d2f3 0%,#dff4ff 76%,#f8fcff 100%);
+  }
+
+  .hero::before,
+  .hero::after {
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.42);
+    pointer-events:none;
+  }
+
+  .hero::before {
+    width:210px;
+    height:210px;
+    left:-85px;
+    bottom:-95px;
+  }
+
+  .hero::after {
+    width:260px;
+    height:260px;
+    right:-105px;
+    bottom:-125px;
+  }
+
+  .baby-icon {
+    display:inline-grid;
+    place-items:center;
+    width:58px;
+    height:58px;
+    margin-bottom:10px;
+    border:1px solid rgba(21,91,135,.14);
+    border-radius:50%;
+    background:rgba(255,255,255,.76);
+    box-shadow:0 8px 20px rgba(21,91,135,.10);
+    font-size:29px;
+  }
+
+  .hero h1 {
+    margin:0;
+    font-size:clamp(34px,6vw,60px);
+    line-height:1.04;
+    letter-spacing:-.035em;
+  }
+
+  .hero h2 {
+    margin:11px 0 7px;
+    font-size:clamp(18px,3vw,27px);
+    font-weight:750;
+  }
+
+  .subtitle {
+    max-width:650px;
+    margin:0 auto 18px;
+    color:#315d78;
+    font-size:15px;
+  }
+
+  .event-info,
+  .place {
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:9px;
+  }
+
+  .pill {
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 12px;
+    border:1px solid rgba(21,91,135,.16);
+    border-radius:999px;
+    background:rgba(255,255,255,.86);
+    color:#194a6a;
+    font-size:13px;
+    text-decoration:none;
+    box-shadow:0 4px 12px rgba(21,91,135,.07);
+  }
+
+  a.pill:hover { background:#fff; transform:translateY(-1px); }
+
+  .card {
+    position:relative;
+    width:min(1040px,92%);
+    margin:-48px auto 42px;
+    padding:20px 20px 10px;
+    border:2px solid #ccecff;
+    border-radius:24px;
+    background:rgba(255,255,255,.98);
+    box-shadow:0 18px 45px rgba(21,91,135,.15);
+  }
+
+  .intro {
+    padding:16px 18px;
+    border:1px dashed #6eb9e7;
+    border-radius:17px;
+    background:linear-gradient(135deg,#f3fbff,#fffdf6);
+    line-height:1.55;
+  }
+
+  .intro p { margin:0; }
+  .intro .small { display:block; margin-top:7px; color:var(--grijs); font-size:13px; }
+
+  .section-title {
+    margin:30px 0 2px;
+    text-align:center;
+    color:var(--marine);
+    font-size:22px;
+  }
+
+  .section-subtitle {
+    margin:0 0 13px;
+    text-align:center;
+    color:var(--grijs);
+    font-size:13px;
+  }
+
+  .divider {
+    height:1px;
+    margin:16px 0;
+    background:linear-gradient(90deg,transparent,#bfe5fa,transparent);
+  }
+
+  .row {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:15px;
+    margin:12px 0 19px;
+  }
+
+  .item {
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    min-height:280px;
+    padding:0;
+    border:1px solid #cce8f8;
+    border-radius:17px;
+    background:#fff;
+    overflow:hidden;
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+  }
+
+  .item:hover {
+    transform:translateY(-2px);
+    border-color:#85c8ec;
+    box-shadow:0 10px 22px rgba(21,91,135,.09);
+  }
+
+  .item.reserved {
+    opacity:.78;
+    background:#f8fafc;
+  }
+
+  .item-img {
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
+  }
+
+  .item-content {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    padding:14px 13px 12px;
+  }
+
+  .item h3 {
+    max-width:78%;
+    margin:0 0 7px;
+    color:#194f73;
+    font-size:16px;
+    line-height:1.25;
+  }
+
+  .tag {
+    align-self:flex-start;
+    display:inline-block;
+    padding:3px 8px;
+    border:1px solid #b9def2;
+    border-radius:999px;
+    background:#e9f7ff;
+    color:#185a83;
+    font-size:12px;
+  }
+
+  .badge {
+    position:absolute;
+    top:10px;
+    right:10px;
+    max-width:44%;
+    overflow:hidden;
+    padding:3px 8px;
+    border:1px solid #ead190;
+    border-radius:999px;
+    background:#fff7d9;
+    color:#7a5a13;
+    font-size:11px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .desc {
+    flex:1;
+    min-height:38px;
+    margin:7px 0 11px;
+    color:var(--grijs);
+    font-size:13px;
+    line-height:1.4;
+  }
+
+  .controls { display:flex; flex-wrap:wrap; gap:8px; }
+
+  button {
+    padding:8px 11px;
+    border:2px solid #63b4e2;
+    border-radius:12px;
+    background:#fff;
+    color:#18577e;
+    font:inherit;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  button:hover:not(:disabled) { transform:translateY(-1px); }
+  button:disabled { cursor:not-allowed; opacity:.62; }
+  .primary { border-color:#2f90c8; background:#4aa7dc; color:#fff; }
+  .muted { border-color:#d7e3ea; color:#425b6b; }
+  .danger { border-color:#efaaaa; color:#a82f2f; }
+
+  .banner { margin-bottom:7px; padding:10px 0; text-align:center; }
+  .banner span {
+    display:inline-block;
+    padding:7px 11px;
+    border:1px solid #c7e7f8;
+    border-radius:999px;
+    background:#eff9ff;
+    color:#285d7e;
+    font-size:12px;
+  }
+
+  footer { padding:7px 0 20px; color:var(--grijs); text-align:center; font-size:12px; }
+
+  @media (max-width:620px) {
+    .hero { padding-top:28px; }
+    .hero h1 { font-size:39px; }
+    .card { width:94%; padding:15px 13px 8px; }
+    .row { grid-template-columns:1fr; }
+    .item { min-height:auto; }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>🎉 Cadeaulijst Babyshower 🍼</h1>
-      <p>Welkom bij onze speciale dag!</p>
-    </div>
-    <div class="intro">
-      <p><strong>Bedankt dat je onze babyshower met ons viert!</strong> Kies een cadeau en klik op <strong>Reserveren</strong>. <em>De foto's die worden getoond zijn alleen ter referentie. Kies alstublieft uw cadeau op basis van de gedetailleerde beschrijving. Dank u wel.</em></p>
-    </div>
-    <div class="filters" id="filters"></div>
-    <div class="grid" id="grid"></div>
+<header class="hero">
+  <div class="baby-icon" aria-hidden="true">🍼</div>
+  <h1>Welkom op onze babyshower!</h1>
+  <h2>Samen vieren we de komst van onze zoon</h2>
+  <p class="subtitle">Bedankt dat je dit bijzondere moment met ons deelt.</p>
+
+  <div class="event-info">
+    <span class="pill">📅 Zaterdag 5 september 2026</span>
+    <span class="pill">🕚 11.00–15.00 uur</span>
+    <span class="pill">🎈 Babyshower</span>
+  </div>
+  <div class="place">
+    <span class="pill">📍 Vlierstraat 53, 6851 HS Huissen</span>
+    <a class="pill" href="https://www.google.com/maps/search/?api=1&query=Vlierstraat+53%2C+6851+HS+Huissen" target="_blank" rel="noopener">Bekijk op de kaart</a>
+  </div>
+</header>
+
+<main class="card">
+  <div class="intro">
+    <p><strong>Bedankt dat je onze babyshower met ons viert!</strong> Kies een cadeau en klik op <strong>Reserveren</strong>. <em>De foto's die worden getoond zijn alleen ter referentie. Kies alstublieft uw cadeau op basis van de gedetailleerde beschrijving. Dank u wel.</em></p>
   </div>
 
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <div class="modal-header">Reserveer dit cadeau</div>
-      <div class="modal-body">
-        <input type="text" id="nameInput" placeholder="Jouw naam">
+  <h3 class="section-title">👕 Kleding voor baby</h3>
+  <section class="row" data-category="kleding"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🛏️ Slaapkamer & rust</h3>
+  <section class="row" data-category="slaapkamer"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🧺 Bad, verzorging & hygiene</h3>
+  <section class="row" data-category="bad"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🍼 Voeding</h3>
+  <section class="row" data-category="voeding"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">👶 Algemene babyverzorging</h3>
+  <section class="row" data-category="algemeen"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🚼 Luiers</h3>
+  <section class="row" data-category="luiers"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🚼 Kinderwagen & mobiliteit</h3>
+  <section class="row" data-category="kinderwagen"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🪑 Uitrusting</h3>
+  <section class="row" data-category="uitrusting"></section>
+
+  <div class="banner"><span>Met liefde samengesteld voor mama en haar zoon. Laatste update: 24-07-2026.</span></div>
+  <footer><span>Reserveringen worden direct opgeslagen. Bij een gekozen cadeau verschijnt "Gereserveerd door …".</span></footer>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+import { getDatabase, ref, onValue, runTransaction, get, set } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDqmNK2nF6KJsVcZFdP4VPHUKLiL89HIjg",
+  authDomain: "babyshowergaby-4ce16.firebaseapp.com",
+  databaseURL: "https://babyshowergaby-4ce16-default-rtdb.firebaseio.com",
+  projectId: "babyshowergaby-4ce16",
+  storageBucket: "babyshowergaby-4ce16.firebasestorage.app",
+  messagingSenderId: "367031549351",
+  appId: "1:367031549351:web:4b07dec773d4334dd20a82"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const EVENT_NAME = "Babyshower";
+const EVENT_DB_PATH = "babyshower_huissen_2026/reservations";
+const ADMIN_PHONE = "+31657292581";
+
+const ITEMS = [
+  // Kleding
+  { key:"kl1", cat:"kleding", title:"Rompertjes voor baby (lange mouwen), set van 3", note:"Wit/blauw, 100% katoen", img:"imagens/Imagen1.jpg" },
+  { key:"kl2", cat:"kleding", title:"Romper voor baby (lange mouwen)", note:"100% merinowol, wit, maat 50", img:"imagens/Imagen2.jpg" },
+  { key:"kl3", cat:"kleding", title:"Jumpsuit voor baby in ribgebreide wol", note:"Met 2-in-1 voetjes, lila, maat 56–62", img:"imagens/Imagen3.jpg" },
+  { key:"kl4", cat:"kleding", title:"Set van 2 babymaillots van merinowol", note:"Rib, zacht bruin, maat 50–70", img:"imagens/Imagen4.jpg" },
+  { key:"kl5", cat:"kleding", title:"Babysokjes", note:"Merinowol of katoen, 0–6 maanden", img:"imagens/Imagen5.jpg" },
+  { key:"kl6", cat:"kleding", title:"Inbakerdoek", note:"Maat 0–3 maanden (2 stuks)", img:"imagens/Imagen6.jpg" },
+  { key:"kl7", cat:"kleding", title:"Babyslaapzak teddy", note:"Crème, maat 0–3 m (2 stuks)", img:"imagens/Imagen7.jpg" },
+
+  // Slaapkamer
+  { key:"sl1", cat:"slaapkamer", title:"Klamboe voor babybed", note:"Met volantjes, 220 cm, ivoorkleur, katoen/polyester", img:"imagens/Imagen8.jpg" },
+  { key:"sl2", cat:"slaapkamer", title:"Hemel / klamboe", note:"Wit of oatmeal, hoogte 220 cm", img:"imagens/Imagen9.jpg" },
+  { key:"sl3", cat:"slaapkamer", title:"Boxkleed rechthoekig", note:"80 × 100 cm", img:"imagens/Imagen10.jpg" },
+  { key:"sl4", cat:"slaapkamer", title:"Waterdichte matrasbeschermer", note:"60×120 cm (2 stuks)", img:"imagens/Imagen11.jpg" },
+  { key:"sl5", cat:"slaapkamer", title:"Slaapknuffel", note:"Zacht en veilig voor baby", img:"imagens/Imagen12.jpg" },
+
+  // Bad & verzorging
+  { key:"bd1", cat:"bad", title:"Weleda Calendula verzorgingsset voor baby", note:"Met shampoo, gezichtscrème, lichaamsolie en beschermende balsam", img:"imagens/Imagen13.jpg" },
+  { key:"bd2", cat:"bad", title:"Weleda Baby Billenbalsem", note:"Calendula & Kamille, 75 ml (2 stuks)", img:"imagens/Imagen14.jpg" },
+  { key:"bd3", cat:"bad", title:"Weleda Verzorgende Babyolie", note:"Calendula, 200 ml (2 stuks)", img:"imagens/Imagen15.jpg" },
+  { key:"bd4", cat:"bad", title:"Weleda Baby Calendula Relax Crèmebad", note:"Lavendel & Neroli, 200 ml (2 stuks)", img:"imagens/Imagen16.jpg" },
+  { key:"bd5", cat:"bad", title:"Weleda Babypoeder", note:"Calendula, Arnica & Echinacea, 20 g (2 stuks)", img:"imagens/Imagen17.jpg" },
+  { key:"bd6", cat:"bad", title:"Badcape blauw 100×100 cm", note:"100% katoen, zacht, absorberend met capuchon (3 stuks)", img:"imagens/Imagen18.jpg" },
+  { key:"bd7", cat:"bad", title:"Set van 8 hydrofiele doeken", note:"Katoen 70×70 cm, zacht, absorberend, beige", img:"imagens/Imagen19.jpg" },
+  { key:"bd8", cat:"bad", title:"Set slabbetjes", note:"Hydrofiel katoen", img:"imagens/Imagen20.jpg" },
+  { key:"bd9", cat:"bad", title:"Pampers Sensitive Babydoekjes", note:"24 verpakkingen × 52 doekjes", img:"imagens/Imagen21.jpg" },
+
+  // Voeding
+  { key:"vd1", cat:"voeding", title:"Flessenwarmer", note:"Philips Avent Premium Elektrische", img:"imagens/Imagen22.jpg" },
+  { key:"vd2", cat:"voeding", title:"Flessensterilisator", note:"Philips Avent", img:"imagens/Imagen23.jpg" },
+  { key:"vd3", cat:"voeding", title:"Startersset voor pasgeboren baby's", note:"Natural Response Flessen, Philips Avent", img:"imagens/Imagen24.jpg" },
+
+  // Algemeen
+  { key:"ag1", cat:"algemeen", title:"Elektrische kruik", note:"Oplaadbaar, met Thermosoft hoes", img:"imagens/Imagen25.jpg" },
+  { key:"ag2", cat:"algemeen", title:"Luchtbevochtiger", note:"Voor gezonde luchtvochtigheid", img:"imagens/Imagen26.jpg" },
+
+  // Luiers
+  { key:"lu1", cat:"luiers", title:"Mega pack luiers voor pasgeboren baby", note:"Pampers Sensitive", img:"imagens/Imagen27.jpg" },
+  { key:"lu2", cat:"luiers", title:"Mega pack luiers – maat 2", note:"Pampers Sensitive", img:"imagens/Imagen28.jpg" },
+  { key:"lu3", cat:"luiers", title:"Mega pack luiers – maat 3", note:"Pampers Sensitive", img:"imagens/Imagen29.jpg" },
+  { key:"lu4", cat:"luiers", title:"Mega pack luiers – maat 4", note:"Pampers Sensitive", img:"imagens/Imagen30.jpg" },
+
+  // Kinderwagen
+  { key:"kw1", cat:"kinderwagen", title:"Warme voetenzak voor kinderwagen", note:"Fleecevoering, winddicht, zwart", img:"imagens/Imagen31.jpg" },
+  { key:"kw2", cat:"kinderwagen", title:"Laken + deken kinderwagen", note:"Set voor warmte en comfort", img:"imagens/Imagen32.jpg" },
+
+  // Uitrusting
+  { key:"ut1", cat:"uitrusting", title:"Wipstoel", note:"Voorkeur: beigebrown, taupe, grijs of donkerblauw", img:"imagens/Imagen33.jpg" },
+  { key:"ut2", cat:"uitrusting", title:"Aankleedkussen Lionelo Megs (Beige)", note:"70 × 49 × 7 cm", img:"imagens/Imagen34.jpg" }
+];
+
+// Renderizar por categoría
+const categories = ["kleding","slaapkamer","bad","voeding","algemeen","luiers","kinderwagen","uitrusting"];
+
+categories.forEach(cat => {
+  const section = document.querySelector(`[data-category="${cat}"]`);
+  if (!section) return;
+
+  const items = ITEMS.filter(i => i.cat === cat);
+
+  section.innerHTML = items.map(item => `
+    <article class="item" data-key="${item.key}">
+      <img class="item-img" src="${item.img}" alt="${item.title}" loading="lazy">
+      <div class="item-content">
+        <h3>${item.title}</h3>
+        <span class="badge" data-badge="${item.key}"></span>
+        <p class="desc">${item.note || ""}</p>
+        <div class="controls">
+          <button class="primary" data-act="reserve" data-id="${item.key}">Reserveren</button>
+          <button class="muted" data-act="copy" data-id="${item.key}">Kopiëren</button>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button class="btn-confirm" onclick="confirmReservation()">Bevestigen</button>
-        <button class="btn-cancel" onclick="closeModal()">Annuleren</button>
-      </div>
-    </div>
-  </div>
+    </article>
+  `).join("");
+});
 
-  <script>
-    const ITEMS = [
-      // Kleding
-      { key:"kl1", cat:"kleding", title:"Rompertjes voor baby (lange mouwen), set van 3", note:"Wit/blauw, 100% katoen", img:"imagens/Imagen1.jpg" },
-      { key:"kl2", cat:"kleding", title:"Romper voor baby (lange mouwen)", note:"100% merinowol, wit, maat 50", img:"imagens/Imagen2.jpg" },
-      { key:"kl3", cat:"kleding", title:"Jumpsuit voor baby in ribgebreide wol", note:"Met 2-in-1 voetjes, lila, maat 56–62", img:"imagens/Imagen3.jpg" },
-      { key:"kl4", cat:"kleding", title:"Set van 2 babymaillots van merinowol", note:"Rib, zacht bruin, maat 50–70", img:"imagens/Imagen4.jpg" },
-      { key:"kl5", cat:"kleding", title:"Babysokjes", note:"Merinowol of katoen, 0–6 maanden", img:"imagens/Imagen5.jpg" },
-      { key:"kl6", cat:"kleding", title:"Inbakerdoek", note:"Maat 0–3 maanden (2 stuks)", img:"imagens/Imagen6.jpg" },
-      { key:"kl7", cat:"kleding", title:"Babyslaapzak teddy", note:"Crème, maat 0–3 m (2 stuks)", img:"imagens/Imagen7.jpg" },
+// Live reservations
+ITEMS.forEach(item => {
+  const reservationRef = ref(db, `${EVENT_DB_PATH}/${item.key}`);
 
-      // Slaapkamer
-      { key:"sl1", cat:"slaapkamer", title:"Klamboe voor babybed", note:"Met volantjes, 220 cm, ivoorkleur, katoen/polyester", img:"imagens/Imagen8.jpg" },
-      { key:"sl2", cat:"slaapkamer", title:"Hemel / klamboe", note:"Wit of oatmeal, hoogte 220 cm", img:"imagens/Imagen9.jpg" },
-      { key:"sl3", cat:"slaapkamer", title:"Boxkleed rechthoekig", note:"80 × 100 cm", img:"imagens/Imagen10.jpg" },
-      { key:"sl4", cat:"slaapkamer", title:"Waterdichte matrasbeschermer", note:"60×120 cm (2 stuks)", img:"imagens/Imagen11.jpg" },
-      { key:"sl5", cat:"slaapkamer", title:"Slaapknuffel", note:"Zacht en veilig voor baby", img:"imagens/Imagen12.jpg" },
+  onValue(reservationRef, snapshot => {
+    const data = snapshot.val();
+    const card = document.querySelector(`[data-key="${item.key}"]`);
+    const reserveButton = card?.querySelector(`button[data-act="reserve"][data-id="${item.key}"]`);
+    const badge = card?.querySelector(`[data-badge="${item.key}"]`);
+    let cancelButton = card?.querySelector(`button[data-act="cancel"][data-id="${item.key}"]`);
 
-      // Bad & verzorging
-      { key:"bd1", cat:"bad", title:"Weleda Calendula verzorgingsset voor baby", note:"Met shampoo, gezichtscrème, lichaamsolie en beschermende balsam", img:"imagens/Imagen13.jpg" },
-      { key:"bd2", cat:"bad", title:"Weleda Baby Billenbalsem", note:"Calendula & Kamille, 75 ml (2 stuks)", img:"imagens/Imagen14.jpg" },
-      { key:"bd3", cat:"bad", title:"Weleda Verzorgende Babyolie", note:"Calendula, 200 ml (2 stuks)", img:"imagens/Imagen15.jpg" },
-      { key:"bd4", cat:"bad", title:"Weleda Baby Calendula Relax Crèmebad", note:"Lavendel & Neroli, 200 ml (2 stuks)", img:"imagens/Imagen16.jpg" },
-      { key:"bd5", cat:"bad", title:"Weleda Babypoeder", note:"Calendula, Arnica & Echinacea, 20 g (2 stuks)", img:"imagens/Imagen17.jpg" },
-      { key:"bd6", cat:"bad", title:"Badcape blauw 100×100 cm", note:"100% katoen, zacht, absorberend met capuchon (3 stuks)", img:"imagens/Imagen18.jpg" },
-      { key:"bd7", cat:"bad", title:"Set van 8 hydrofiele doeken", note:"Katoen 70×70 cm, zacht, absorberend, beige", img:"imagens/Imagen19.jpg" },
-      { key:"bd8", cat:"bad", title:"Set slabbetjes", note:"Hydrofiel katoen", img:"imagens/Imagen20.jpg" },
-      { key:"bd9", cat:"bad", title:"Pampers Sensitive Babydoekjes", note:"24 verpakkingen × 52 doekjes", img:"imagens/Imagen21.jpg" },
-
-      // Voeding
-      { key:"vd1", cat:"voeding", title:"Flessenwarmer", note:"Philips Avent Premium Elektrische", img:"imagens/Imagen22.jpg" },
-      { key:"vd2", cat:"voeding", title:"Flessensterilisator", note:"Philips Avent", img:"imagens/Imagen23.jpg" },
-      { key:"vd3", cat:"voeding", title:"Startersset voor pasgeboren baby's", note:"Natural Response Flessen, Philips Avent", img:"imagens/Imagen24.jpg" },
-
-      // Algemeen
-      { key:"ag1", cat:"algemeen", title:"Elektrische kruik", note:"Oplaadbaar, met Thermosoft hoes", img:"imagens/Imagen25.jpg" },
-      { key:"ag2", cat:"algemeen", title:"Luchtbevochtiger", note:"Voor gezonde luchtvochtigheid", img:"imagens/Imagen26.jpg" },
-
-      // Luiers
-      { key:"lu1", cat:"luiers", title:"Mega pack luiers voor pasgeboren baby", note:"Pampers Sensitive", img:"imagens/Imagen27.jpg" },
-      { key:"lu2", cat:"luiers", title:"Mega pack luiers – maat 2", note:"Pampers Sensitive", img:"imagens/Imagen28.jpg" },
-      { key:"lu3", cat:"luiers", title:"Mega pack luiers – maat 3", note:"Pampers Sensitive", img:"imagens/Imagen29.jpg" },
-      { key:"lu4", cat:"luiers", title:"Mega pack luiers – maat 4", note:"Pampers Sensitive", img:"imagens/Imagen30.jpg" },
-
-      // Kinderwagen
-      { key:"kw1", cat:"kinderwagen", title:"Warme voetenzak voor kinderwagen", note:"Fleecevoering, winddicht, zwart", img:"imagens/Imagen31.jpg" },
-      { key:"kw2", cat:"kinderwagen", title:"Laken + deken kinderwagen", note:"Set voor warmte en comfort", img:"imagens/Imagen32.jpg" },
-
-      // Uitrusting
-      { key:"ut1", cat:"uitrusting", title:"Wipstoel", note:"Voorkeur: beigebrown, taupe, grijs of donkerblauw", img:"imagens/Imagen33.jpg" },
-      { key:"ut2", cat:"uitrusting", title:"Aankleedkussen Lionelo Megs (Beige)", note:"70 × 49 × 7 cm", img:"imagens/Imagen34.jpg" }
-    ];
-
-    const CATEGORIES = {
-      alle: "Alle",
-      kleding: "Kleding",
-      slaapkamer: "Slaapkamer",
-      bad: "Bad & verzorging",
-      voeding: "Voeding",
-      algemeen: "Algemeen",
-      luiers: "Luiers",
-      kinderwagen: "Kinderwagen",
-      uitrusting: "Uitrusting"
-    };
-
-    let reservations = JSON.parse(localStorage.getItem('reservations') || '{}');
-    let currentFilter = 'alle';
-    let currentKey = null;
-
-    function renderFilters() {
-      let html = '';
-      for (let cat in CATEGORIES) {
-        const active = cat === currentFilter ? 'active' : '';
-        html += `<button class="filter-btn ${active}" onclick="setFilter('${cat}')">${CATEGORIES[cat]}</button>`;
+    if (data?.reserved) {
+      card?.classList.add("reserved");
+      if (reserveButton) {
+        reserveButton.disabled = true;
+        reserveButton.textContent = "Al gereserveerd";
       }
-      document.getElementById('filters').innerHTML = html;
-    }
+      if (badge) badge.textContent = `Gereserveerd door ${data.name || "—"}`;
 
-    function setFilter(cat) {
-      currentFilter = cat;
-      renderFilters();
-      renderGrid();
+      if (!cancelButton && card) {
+        cancelButton = document.createElement("button");
+        cancelButton.className = "danger";
+        cancelButton.dataset.act = "cancel";
+        cancelButton.dataset.id = item.key;
+        cancelButton.textContent = "Annuleren (pincode)";
+        card.querySelector(".controls")?.appendChild(cancelButton);
+      }
+    } else {
+      card?.classList.remove("reserved");
+      if (reserveButton) {
+        reserveButton.disabled = false;
+        reserveButton.textContent = "Reserveren";
+      }
+      if (badge) badge.textContent = "";
+      cancelButton?.remove();
     }
+  });
+});
 
-    function renderGrid() {
-      let html = '';
-      const filtered = currentFilter === 'alle' ? ITEMS : ITEMS.filter(i => i.cat === currentFilter);
-      
-      filtered.forEach(item => {
-        const reserved = reservations[item.key];
-        const btnHtml = reserved
-          ? `<button class="card-btn btn-reserved" disabled>Gereserveerd door ${reserved}</button>`
-          : `<button class="card-btn btn-reserve" onclick="openModal('${item.key}')">Reserveren</button>`;
-        
-        html += `
-          <div class="card">
-            <div class="card-img" style="background-image:url('${item.img}')"></div>
-            <div class="card-body">
-              <div class="card-title">${item.title}</div>
-              <div class="card-note">${item.note}</div>
-              ${btnHtml}
-            </div>
-          </div>
-        `;
+function openWhatsAppToHost(itemTitle, itemNote, guestName) {
+  const cleanPhone = ADMIN_PHONE.replace(/\D/g, "");
+  if (!cleanPhone) {
+    alert("Het WhatsApp-nummer van de gastvrouw ontbreekt.");
+    return;
+  }
+
+  const message = [
+    `Hallo, ik bevestig mijn reservering voor de ${EVENT_NAME}:`,
+    `• Cadeau: ${itemTitle}`,
+    `• Omschrijving: ${itemNote || "—"}`,
+    `• Mijn naam: ${guestName}`
+  ].join("\n");
+
+  window.location.assign(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`);
+}
+
+addEventListener("click", async event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+
+  const action = button.dataset.act;
+  const id = button.dataset.id;
+  if (!action || !id) return;
+
+  const item = ITEMS.find(entry => entry.key === id);
+  if (!item) return;
+
+  const reservationRef = ref(db, `${EVENT_DB_PATH}/${id}`);
+
+  if (action === "copy") {
+    try {
+      await navigator.clipboard.writeText(`${item.title} — ${item.note || ""}`);
+      button.textContent = "Gekopieerd";
+      setTimeout(() => { button.textContent = "Kopiëren"; }, 1200);
+    } catch {
+      alert("Kopiëren is niet gelukt. Selecteer de tekst handmatig.");
+    }
+    return;
+  }
+
+  if (action === "reserve") {
+    const guestName = prompt("Vul je naam in om dit cadeau te reserveren:");
+    if (!guestName?.trim()) return;
+
+    try {
+      const result = await runTransaction(reservationRef, current => {
+        if (current?.reserved) return;
+        return { reserved:true, name:guestName.trim(), ts:Date.now() };
       });
-      
-      document.getElementById('grid').innerHTML = html;
-    }
 
-    function openModal(key) {
-      currentKey = key;
-      document.getElementById('modal').classList.add('show');
-      document.getElementById('nameInput').value = '';
-      document.getElementById('nameInput').focus();
-    }
-
-    function closeModal() {
-      document.getElementById('modal').classList.remove('show');
-      currentKey = null;
-    }
-
-    function confirmReservation() {
-      const name = document.getElementById('nameInput').value.trim();
-      if (!name) {
-        alert('Vul alstublieft je naam in.');
+      if (!result.committed) {
+        alert("Dit cadeau is net door iemand anders gereserveerd.");
         return;
       }
-      reservations[currentKey] = name;
-      localStorage.setItem('reservations', JSON.stringify(reservations));
-      closeModal();
-      renderGrid();
+
+      openWhatsAppToHost(item.title, item.note, guestName.trim());
+    } catch (error) {
+      console.error(error);
+      alert("De reservering kon niet worden opgeslagen.");
     }
+    return;
+  }
 
-    document.getElementById('nameInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        confirmReservation();
+  if (action === "cancel") {
+    const pin = prompt("Vul de pincode van de gastvrouw in:");
+    if (!pin) return;
+
+    try {
+      const snapshot = await get(reservationRef);
+      const current = snapshot.val();
+
+      if (!current?.reserved) {
+        alert("Dit cadeau is niet gereserveerd.");
+        return;
       }
-    });
 
-    renderFilters();
-    renderGrid();
-  </script>
+      await set(reservationRef, {
+        reserved:false,
+        name:current.name,
+        ts:current.ts,
+        pin,
+        cancelTs:Date.now()
+      });
+
+      alert("Reservering geannuleerd ✓");
+    } catch (error) {
+      console.error(error);
+      alert("Annuleren is niet gelukt.");
+    }
+  }
+});
+</script>
 </body>
 </html>
