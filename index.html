@@ -179,7 +179,7 @@
     position:relative;
     display:flex;
     flex-direction:column;
-    min-height:340px;
+    min-height:280px;
     padding:0;
     border:1px solid #cce8f8;
     border-radius:17px;
@@ -201,7 +201,7 @@
 
   .item-img {
     width:100%;
-    height:200px;
+    height:180px;
     object-fit:cover;
     background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
   }
@@ -225,7 +225,6 @@
     align-self:flex-start;
     display:inline-block;
     padding:3px 8px;
-    margin-bottom:6px;
     border:1px solid #b9def2;
     border-radius:999px;
     background:#e9f7ff;
@@ -235,16 +234,15 @@
 
   .price {
     position:absolute;
-    top:168px;
+    top:148px;
     right:10px;
     padding:5px 10px;
     border:1px solid #ead190;
     border-radius:999px;
-    background:rgba(255,247,217,.95);
+    background:#fff7d9;
     color:#7a5a13;
     font-size:13px;
     font-weight:700;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
   }
 
   .badge {
@@ -256,12 +254,11 @@
     padding:3px 8px;
     border:1px solid #ead190;
     border-radius:999px;
-    background:rgba(255,247,217,.95);
+    background:#fff7d9;
     color:#7a5a13;
     font-size:11px;
     text-overflow:ellipsis;
     white-space:nowrap;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
   }
 
   .desc {
@@ -285,13 +282,9 @@
     font-size:13px;
     font-weight:700;
     cursor:pointer;
-    transition:all .15s ease;
   }
 
-  button:hover:not(:disabled) { 
-    transform:translateY(-1px);
-    box-shadow:0 4px 12px rgba(21,91,135,.12);
-  }
+  button:hover:not(:disabled) { transform:translateY(-1px); }
   button:disabled { cursor:not-allowed; opacity:.62; }
   .primary { border-color:#2f90c8; background:#4aa7dc; color:#fff; }
   .muted { border-color:#d7e3ea; color:#425b6b; }
@@ -316,7 +309,6 @@
     .card { width:94%; padding:15px 13px 8px; }
     .row { grid-template-columns:1fr; }
     .item { min-height:auto; }
-    .item-img { height:220px; }
   }
 </style>
 </head>
@@ -341,278 +333,273 @@
 <main class="card">
   <div class="intro">
     <p><strong>Bedankt dat je onze babyshower met ons viert!</strong> Kies een cadeau en klik op <strong>Reserveren</strong>.</p>
-    <span class="small">Je naam verschijnt direct bij het gekozen cadeau.</span>
   </div>
 
-  <h3 class="section-title">Cadeaulijst voor onze zoon</h3>
-  <p class="section-subtitle">Praktische en liefdevolle cadeaus voor zijn eerste maanden.</p>
+  <h3 class="section-title">👕 Kleding voor baby</h3>
+  <section class="row" data-category="kleding"></section>
 
   <div class="divider"></div>
-  <section id="grid" class="row" aria-live="polite"></section>
-  <div class="divider"></div>
+  <h3 class="section-title">🛏️ Slaapkamer & rust</h3>
+  <section class="row" data-category="slaapkamer"></section>
 
-  <div class="banner"><span>Met liefde samengesteld voor mama en haar zoon. Laatste update: 24 januari 2025.</span></div>
+  <div class="divider"></div>
+  <h3 class="section-title">🧺 Bad, verzorging & hygiene</h3>
+  <section class="row" data-category="bad"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🍼 Voeding</h3>
+  <section class="row" data-category="voeding"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">👶 Algemene babyverzorging</h3>
+  <section class="row" data-category="algemeen"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🚼 Luiers</h3>
+  <section class="row" data-category="luiers"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🚼 Kinderwagen & mobiliteit</h3>
+  <section class="row" data-category="kinderwagen"></section>
+
+  <div class="divider"></div>
+  <h3 class="section-title">🪑 Uitrusting</h3>
+  <section class="row" data-category="uitrusting"></section>
+
+  <div class="banner"><span>Met liefde samengesteld voor mama en haar zoon. Laatste update: 24-07-2026.</span></div>
   <footer><span>Reserveringen worden direct opgeslagen. Bij een gekozen cadeau verschijnt "Gereserveerd door …".</span></footer>
 </main>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+import { getDatabase, ref, onValue, runTransaction, get, set } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBpQghGvDF8y3K6J0RzXKLxJ_vT8UqYDFk",
-  authDomain: "babyshower-huissen.firebaseapp.com",
-  databaseURL: "https://babyshower-huissen-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "babyshower-huissen",
-  storageBucket: "babyshower-huissen.firebasestorage.app",
-  messagingSenderId: "123456789012",
-  appId: "1:123456789012:web:abcdef1234567890abcdef"
+  apiKey: "AIzaSyDqmNK2nF6KJsVcZFdP4VPHUKLiL89HIjg",
+  authDomain: "babyshowergaby-4ce16.firebaseapp.com",
+  databaseURL: "https://babyshowergaby-4ce16-default-rtdb.firebaseio.com",
+  projectId: "babyshowergaby-4ce16",
+  storageBucket: "babyshowergaby-4ce16.firebasestorage.app",
+  messagingSenderId: "367031549351",
+  appId: "1:367031549351:web:4b07dec773d4334dd20a82"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-const products = [
-  {
-    id: 1,
-    name: "Luiers",
-    category: "Verzorging",
-    price: "€25–€40",
-    description: "Een pakket luiers maat 1, 2 of 3 is altijd welkom.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/luiers.jpg"
-  },
-  {
-    id: 2,
-    name: "Flesjes en spenen",
-    category: "Voeding",
-    price: "€15–€30",
-    description: "Anti-koliek flesjes van merken als MAM, Philips Avent of Dr. Brown's.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/flesjes.jpg"
-  },
-  {
-    id: 3,
-    name: "Rompertjes",
-    category: "Kleding",
-    price: "€10–€25",
-    description: "Zachte katoenen rompertjes maat 50–68.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/rompertjes.jpg"
-  },
-  {
-    id: 4,
-    name: "Badcape met capuchon",
-    category: "Verzorging",
-    price: "€15–€25",
-    description: "Een zachte badcape om baby warm te houden na het badje.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/badcape.jpg"
-  },
-  {
-    id: 5,
-    name: "Babydoekjes",
-    category: "Verzorging",
-    price: "€10–€20",
-    description: "Zachte doekjes van WaterWipes of Naïf voor de gevoelige babyhuid.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/babydoekjes.jpg"
-  },
-  {
-    id: 6,
-    name: "Speelkleed",
-    category: "Speelgoed",
-    price: "€30–€60",
-    description: "Een kleurrijk speelkleed met speeltjes om zintuigen te prikkelen.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/speelkleed.jpg"
-  },
-  {
-    id: 7,
-    name: "Knuffels",
-    category: "Speelgoed",
-    price: "€10–€20",
-    description: "Een zachte knuffel of knuffeldoekje.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/knuffels.jpg"
-  },
-  {
-    id: 8,
-    name: "Babymonitor",
-    category: "Veiligheid",
-    price: "€50–€150",
-    description: "Een betrouwbare babymonitor met beeld en geluid.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/babymonitor.jpg"
-  },
-  {
-    id: 9,
-    name: "Luiertas",
-    category: "Accessoires",
-    price: "€30–€60",
-    description: "Een praktische luiertas met veel vakken.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/luiertas.jpg"
-  },
-  {
-    id: 10,
-    name: "Lakentjes voor ledikant",
-    category: "Textiel",
-    price: "€15–€30",
-    description: "Zachte hoeslakens van biologisch katoen.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/lakentjes.jpg"
-  },
-  {
-    id: 11,
-    name: "Slaapzak",
-    category: "Textiel",
-    price: "€20–€40",
-    description: "Een veilige slaapzak voor comfortabele nachten.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/slaapzak.jpg"
-  },
-  {
-    id: 12,
-    name: "Voedingskussen",
-    category: "Voeding",
-    price: "€30–€50",
-    description: "Een ergonomisch voedingskussen voor borstvoeding of flesvoeding.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/voedingskussen.jpg"
-  },
-  {
-    id: 13,
-    name: "Verzorgingsset",
-    category: "Verzorging",
-    price: "€15–€30",
-    description: "Een complete verzorgingsset met nagelschaar, haarborstel en thermometer.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/verzorgingsset.jpg"
-  },
-  {
-    id: 14,
-    name: "Wandelwagen",
-    category: "Vervoer",
-    price: "€200–€800",
-    description: "Een comfortabele en veilige wandelwagen.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/wandelwagen.jpg"
-  },
-  {
-    id: 15,
-    name: "Maxi-Cosi",
-    category: "Vervoer",
-    price: "€100–€300",
-    description: "Een veilig autostoeltje voor de eerste maanden.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/maxicosi.jpg"
-  },
-  {
-    id: 16,
-    name: "Babygym",
-    category: "Speelgoed",
-    price: "€25–€50",
-    description: "Een speelboog met hangende speeltjes.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/babygym.jpg"
-  },
-  {
-    id: 17,
-    name: "Bijtringen",
-    category: "Speelgoed",
-    price: "€5–€15",
-    description: "Veilige bijtringen voor als de tandjes doorkomen.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/bijtringen.jpg"
-  },
-  {
-    id: 18,
-    name: "Rammelaar",
-    category: "Speelgoed",
-    price: "€5–€15",
-    description: "Een vrolijke rammelaar om motoriek te stimuleren.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/rammelaar.jpg"
-  },
-  {
-    id: 19,
-    name: "Nachtlampje",
-    category: "Babykamer",
-    price: "€15–€30",
-    description: "Een zacht nachtlampje voor rustige nachten.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/nachtlampje.jpg"
-  },
-  {
-    id: 20,
-    name: "Wiegje of reiswieg",
-    category: "Babykamer",
-    price: "€50–€150",
-    description: "Een klein wiegje voor overdag of als reiswieg.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/wiegje.jpg"
-  },
-  {
-    id: 21,
-    name: "Box",
-    category: "Babykamer",
-    price: "€60–€150",
-    description: "Een veilige speelplek voor baby.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/box.jpg"
-  },
-  {
-    id: 22,
-    name: "Commode",
-    category: "Babykamer",
-    price: "€100–€300",
-    description: "Een commode met voldoende opbergruimte.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/commode.jpg"
-  },
-  {
-    id: 23,
-    name: "Babykamer decoratie",
-    category: "Babykamer",
-    price: "€20–€50",
-    description: "Muurstickers, posters of een mobiel voor een gezellige babykamer.",
-    image: "https://raw.githubusercontent.com/Jhonbr1991/cadeaulijst_babyshower_huissen/main/imagens/decoratie.jpg"
-  }
+const EVENT_NAME = "Babyshower";
+const EVENT_DB_PATH = "babyshower_huissen_2026/reservations";
+const ADMIN_PHONE = "+31657292581";
+
+// ⚠️ SUBSTITUA OS LINKS DAS IMAGENS PELOS CAMINHOS CORRETOS
+const ITEMS = [
+  // Kleding
+  { key:"kl1", cat:"kleding", title:"Rompertjes voor baby (lange mouwen), set van 3", note:"Wit/blauw, 100% katoen", price:"€22", img:"images/kl1.jpg" },
+  { key:"kl2", cat:"kleding", title:"Romper voor baby (lange mouwen)", note:"100% merinowol, wit, maat 50", price:"€35", img:"images/kl2.jpg" },
+  { key:"kl3", cat:"kleding", title:"Jumpsuit voor baby in ribgebreide wol", note:"Met 2-in-1 voetjes, lila, maat 56–62", price:"€45", img:"images/kl3.jpg" },
+  { key:"kl4", cat:"kleding", title:"Set van 2 babymaillots van merinowol", note:"Rib, zacht bruin, maat 50–70", price:"€46", img:"images/kl4.jpg" },
+  { key:"kl5", cat:"kleding", title:"Babysokjes", note:"Merinowol of katoen, 0–6 maanden", price:"€15", img:"images/kl5.jpg" },
+  { key:"kl6", cat:"kleding", title:"Inbakerdoek", note:"Maat 0–3 maanden (2 stuks)", price:"€50", img:"images/kl6.jpg" },
+  { key:"kl7", cat:"kleding", title:"Babyslaapzak teddy", note:"Crème, maat 0–3 m (2 stuks)", price:"€40", img:"images/kl7.jpg" },
+
+  // Slaapkamer
+  { key:"sl1", cat:"slaapkamer", title:"Klamboe voor babybed", note:"Met volantjes, 220 cm, ivoorkleur, katoen/polyester", price:"€34", img:"images/sl1.jpg" },
+  { key:"sl2", cat:"slaapkamer", title:"Hemel / klamboe", note:"Wit of oatmeal, hoogte 220 cm", price:"€40", img:"images/sl2.jpg" },
+  { key:"sl3", cat:"slaapkamer", title:"Boxkleed rechthoekig", note:"80 × 100 cm", price:"€40", img:"images/sl3.jpg" },
+  { key:"sl4", cat:"slaapkamer", title:"Waterdichte matrasbeschermer", note:"60×120 cm (2 stuks)", price:"€30", img:"images/sl4.jpg" },
+  { key:"sl5", cat:"slaapkamer", title:"Slaapknuffel", note:"Zacht en veilig voor baby", price:"€35", img:"images/sl5.jpg" },
+
+  // Bad & verzorging
+  { key:"bd1", cat:"bad", title:"Weleda Calendula verzorgingsset voor baby", note:"Met shampoo, gezichtscrème, lichaamsolie en beschermende balsam", price:"€37", img:"images/bd1.jpg" },
+  { key:"bd2", cat:"bad", title:"Weleda Baby Billenbalsem", note:"Calendula & Kamille, 75 ml (2 stuks)", price:"€16", img:"images/bd2.jpg" },
+  { key:"bd3", cat:"bad", title:"Weleda Verzorgende Babyolie", note:"Calendula, 200 ml (2 stuks)", price:"€20", img:"images/bd3.jpg" },
+  { key:"bd4", cat:"bad", title:"Weleda Baby Calendula Relax Crèmebad", note:"Lavendel & Neroli, 200 ml (2 stuks)", price:"€24", img:"images/bd4.jpg" },
+  { key:"bd5", cat:"bad", title:"Weleda Babypoeder", note:"Calendula, Arnica & Echinacea, 20 g (2 stuks)", price:"€30", img:"images/bd5.jpg" },
+  { key:"bd6", cat:"bad", title:"Badcape blauw 100×100 cm", note:"100% katoen, zacht, absorberend met capuchon (3 stuks)", price:"€48", img:"images/bd6.jpg" },
+  { key:"bd7", cat:"bad", title:"Set van 8 hydrofiele doeken", note:"Katoen 70×70 cm, zacht, absorberend, beige", price:"€20", img:"images/bd7.jpg" },
+  { key:"bd8", cat:"bad", title:"Set slabbetjes", note:"Hydrofiel katoen", price:"€14", img:"images/bd8.jpg" },
+  { key:"bd9", cat:"bad", title:"Pampers Sensitive Babydoekjes", note:"24 verpakkingen × 52 doekjes", price:"€31", img:"images/bd9.jpg" },
+
+  // Voeding
+  { key:"vd1", cat:"voeding", title:"Flessenwarmer", note:"Philips Avent Premium Elektrische", price:"€50", img:"images/vd1.jpg" },
+  { key:"vd2", cat:"voeding", title:"Flessensterilisator", note:"Philips Avent", price:"€60", img:"images/vd2.jpg" },
+  { key:"vd3", cat:"voeding", title:"Startersset voor pasgeboren baby's", note:"Natural Response Flessen, Philips Avent", price:"€31", img:"images/vd3.jpg" },
+
+  // Algemeen
+  { key:"ag1", cat:"algemeen", title:"Elektrische kruik", note:"Oplaadbaar, met Thermosoft hoes", price:"€25", img:"images/ag1.jpg" },
+  { key:"ag2", cat:"algemeen", title:"Luchtbevochtiger", note:"Voor gezonde luchtvochtigheid", price:"€40", img:"images/ag2.jpg" },
+
+  // Luiers
+  { key:"lu1", cat:"luiers", title:"Mega pack luiers voor pasgeboren baby", note:"Pampers Sensitive", price:"€24", img:"images/lu1.jpg" },
+  { key:"lu2", cat:"luiers", title:"Mega pack luiers – maat 2", note:"Pampers Sensitive", price:"€49", img:"images/lu2.jpg" },
+  { key:"lu3", cat:"luiers", title:"Mega pack luiers – maat 3", note:"Pampers Sensitive", price:"€53", img:"images/lu3.jpg" },
+  { key:"lu4", cat:"luiers", title:"Mega pack luiers – maat 4", note:"Pampers Sensitive", price:"€100", img:"images/lu4.jpg" },
+
+  // Kinderwagen
+  { key:"kw1", cat:"kinderwagen", title:"Warme voetenzak voor kinderwagen", note:"Fleecevoering, winddicht, zwart", price:"€100", img:"images/kw1.jpg" },
+  { key:"kw2", cat:"kinderwagen", title:"Laken + deken kinderwagen", note:"Set voor warmte en comfort", price:"€21", img:"images/kw2.jpg" },
+
+  // Uitrusting
+  { key:"ut1", cat:"uitrusting", title:"Wipstoel", note:"Voorkeur: beigebrown, taupe, grijs of donkerblauw", price:"€100", img:"images/ut1.jpg" },
+  { key:"ut2", cat:"uitrusting", title:"Aankleedkussen Lionelo Megs (Beige)", note:"70 × 49 × 7 cm", price:"€60", img:"images/ut2.jpg" }
 ];
 
-const grid = document.getElementById("grid");
-const reservationsRef = ref(db, "reservations");
+// Renderizar por categoría
+const categories = ["kleding","slaapkamer","bad","voeding","algemeen","luiers","kinderwagen","uitrusting"];
 
-onValue(reservationsRef, (snapshot) => {
-  const reservations = snapshot.val() || {};
-  grid.innerHTML = "";
+categories.forEach(cat => {
+  const section = document.querySelector(`[data-category="${cat}"]`);
+  if (!section) return;
 
-  products.forEach((product) => {
-    const reservation = reservations[product.id];
-    const isReserved = !!reservation;
+  const items = ITEMS.filter(i => i.cat === cat);
 
-    const item = document.createElement("article");
-    item.className = `item ${isReserved ? "reserved" : ""}`;
-
-    item.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" class="item-img" loading="lazy">
-      <span class="price">${product.price}</span>
-      ${isReserved ? `<span class="badge" title="Gereserveerd door ${reservation.name}">${reservation.name}</span>` : ""}
+  section.innerHTML = items.map(item => `
+    <article class="item" data-key="${item.key}">
+      <img class="item-img" src="${item.img}" alt="${item.title}" loading="lazy">
+      <div class="price">${item.price}</div>
       <div class="item-content">
-        <h3>${product.name}</h3>
-        <span class="tag">${product.category}</span>
-        <p class="desc">${product.description}</p>
+        <h3>${item.title}</h3>
+        <span class="badge" data-badge="${item.key}"></span>
+        <p class="desc">${item.note || ""}</p>
         <div class="controls">
-          ${
-            isReserved
-              ? `<button class="muted" disabled>Gereserveerd</button>
-                 <button class="danger btn-cancel" data-id="${product.id}">Annuleren</button>`
-              : `<button class="primary btn-reserve" data-id="${product.id}">Reserveren</button>`
-          }
+          <button class="primary" data-act="reserve" data-id="${item.key}">Reserveren</button>
+          <button class="muted" data-act="copy" data-id="${item.key}">Kopiëren</button>
         </div>
       </div>
-    `;
+    </article>
+  `).join("");
+});
 
-    grid.appendChild(item);
-  });
+// Live reservations
+ITEMS.forEach(item => {
+  const reservationRef = ref(db, `${EVENT_DB_PATH}/${item.key}`);
 
-  document.querySelectorAll(".btn-reserve").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = parseInt(btn.dataset.id);
-      const name = prompt("Wat is je naam?");
-      if (name && name.trim()) {
-        set(ref(db, `reservations/${id}`), { name: name.trim(), timestamp: Date.now() });
+  onValue(reservationRef, snapshot => {
+    const data = snapshot.val();
+    const card = document.querySelector(`[data-key="${item.key}"]`);
+    const reserveButton = card?.querySelector(`button[data-act="reserve"][data-id="${item.key}"]`);
+    const badge = card?.querySelector(`[data-badge="${item.key}"]`);
+    let cancelButton = card?.querySelector(`button[data-act="cancel"][data-id="${item.key}"]`);
+
+    if (data?.reserved) {
+      card?.classList.add("reserved");
+      if (reserveButton) {
+        reserveButton.disabled = true;
+        reserveButton.textContent = "Al gereserveerd";
       }
-    });
-  });
+      if (badge) badge.textContent = `Gereserveerd door ${data.name || "—"}`;
 
-  document.querySelectorAll(".btn-cancel").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = parseInt(btn.dataset.id);
-      if (confirm("Weet je zeker dat je deze reservering wilt annuleren?")) {
-        set(ref(db, `reservations/${id}`), null);
+      if (!cancelButton && card) {
+        cancelButton = document.createElement("button");
+        cancelButton.className = "danger";
+        cancelButton.dataset.act = "cancel";
+        cancelButton.dataset.id = item.key;
+        cancelButton.textContent = "Annuleren (pincode)";
+        card.querySelector(".controls")?.appendChild(cancelButton);
       }
-    });
+    } else {
+      card?.classList.remove("reserved");
+      if (reserveButton) {
+        reserveButton.disabled = false;
+        reserveButton.textContent = "Reserveren";
+      }
+      if (badge) badge.textContent = "";
+      cancelButton?.remove();
+    }
   });
+});
+
+function openWhatsAppToHost(itemTitle, itemNote, guestName) {
+  const cleanPhone = ADMIN_PHONE.replace(/\D/g, "");
+  if (!cleanPhone) {
+    alert("Het WhatsApp-nummer van de gastvrouw ontbreekt.");
+    return;
+  }
+
+  const message = [
+    `Hallo, ik bevestig mijn reservering voor de ${EVENT_NAME}:`,
+    `• Cadeau: ${itemTitle}`,
+    `• Omschrijving: ${itemNote || "—"}`,
+    `• Mijn naam: ${guestName}`
+  ].join("\n");
+
+  window.location.assign(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`);
+}
+
+addEventListener("click", async event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+
+  const action = button.dataset.act;
+  const id = button.dataset.id;
+  if (!action || !id) return;
+
+  const item = ITEMS.find(entry => entry.key === id);
+  if (!item) return;
+
+  const reservationRef = ref(db, `${EVENT_DB_PATH}/${id}`);
+
+  if (action === "copy") {
+    try {
+      await navigator.clipboard.writeText(`${item.title} — ${item.note || ""}`);
+      button.textContent = "Gekopieerd";
+      setTimeout(() => { button.textContent = "Kopiëren"; }, 1200);
+    } catch {
+      alert("Kopiëren is niet gelukt. Selecteer de tekst handmatig.");
+    }
+    return;
+  }
+
+  if (action === "reserve") {
+    const guestName = prompt("Vul je naam in om dit cadeau te reserveren:");
+    if (!guestName?.trim()) return;
+
+    try {
+      const result = await runTransaction(reservationRef, current => {
+        if (current?.reserved) return;
+        return { reserved:true, name:guestName.trim(), ts:Date.now() };
+      });
+
+      if (!result.committed) {
+        alert("Dit cadeau is net door iemand anders gereserveerd.");
+        return;
+      }
+
+      openWhatsAppToHost(item.title, item.note, guestName.trim());
+    } catch (error) {
+      console.error(error);
+      alert("De reservering kon niet worden opgeslagen.");
+    }
+    return;
+  }
+
+  if (action === "cancel") {
+    const pin = prompt("Vul de pincode van de gastvrouw in:");
+    if (!pin) return;
+
+    try {
+      const snapshot = await get(reservationRef);
+      const current = snapshot.val();
+
+      if (!current?.reserved) {
+        alert("Dit cadeau is niet gereserveerd.");
+        return;
+      }
+
+      await set(reservationRef, {
+        reserved:false,
+        name:current.name,
+        ts:current.ts,
+        pin,
+        cancelTs:Date.now()
+      });
+
+      alert("Reservering geannuleerd ✓");
+    } catch (error) {
+      console.error(error);
+      alert("Annuleren is niet gelukt.");
+    }
+  }
 });
 </script>
 </body>
