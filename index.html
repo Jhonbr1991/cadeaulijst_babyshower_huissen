@@ -188,23 +188,44 @@
     transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
   }
 
-  .item:hover {
-    transform:translateY(-2px);
-    border-color:#85c8ec;
-    box-shadow:0 10px 22px rgba(21,91,135,.09);
+ /* Amplía y destaca la fotografía al pasar el mouse */
+@media (hover:hover) {
+  .item:hover .item-img {
+    transform:scale(1.10);
+    filter:brightness(1.04) contrast(1.03);
   }
+
+  .item:hover {
+    transform:translateY(-5px);
+    border-color:#4aa7dc;
+    box-shadow:0 16px 32px rgba(21,91,135,.18);
+  }
+}
+
+/* Evita animaciones para usuarios que las tengan desactivadas */
+@media (prefers-reduced-motion:reduce) {
+  .item,
+  .item-img {
+    transition:none;
+  }
+}
 
   .item.reserved {
     opacity:.78;
     background:#f8fafc;
   }
 
-  .item-img {
-    width:100%;
-    height:180px;
-    object-fit:cover;
-    background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
-  }
+.item-img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
+  transition:
+    transform .35s ease,
+    filter .35s ease;
+  transform-origin:center;
+  cursor:zoom-in;
+}
 
   .item-content {
     flex:1;
