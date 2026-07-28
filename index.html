@@ -188,44 +188,42 @@
     transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
   }
 
- /* Amplía y destaca la fotografía al pasar el mouse */
-@media (hover:hover) {
-  .item:hover .item-img {
-    transform:scale(1.10);
-    filter:brightness(1.04) contrast(1.03);
+  /* Amplía y destaca la fotografía al pasar el mouse */
+  @media (hover:hover) {
+    .item:hover .item-img {
+      transform:scale(1.10);
+      filter:brightness(1.04) contrast(1.03);
+    }
+
+    .item:hover {
+      transform:translateY(-5px);
+      border-color:#4aa7dc;
+      box-shadow:0 16px 32px rgba(21,91,135,.18);
+    }
   }
 
-  .item:hover {
-    transform:translateY(-5px);
-    border-color:#4aa7dc;
-    box-shadow:0 16px 32px rgba(21,91,135,.18);
+  /* Evita animaciones para usuarios que las tengan desactivadas */
+  @media (prefers-reduced-motion:reduce) {
+    .item,
+    .item-img {
+      transition:none;
+    }
   }
-}
-
-/* Evita animaciones para usuarios que las tengan desactivadas */
-@media (prefers-reduced-motion:reduce) {
-  .item,
-  .item-img {
-    transition:none;
-  }
-}
 
   .item.reserved {
     opacity:.78;
     background:#f8fafc;
   }
 
-.item-img {
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
-  transition:
-    transform .35s ease,
-    filter .35s ease;
-  transform-origin:center;
-  cursor:zoom-in;
-}
+  .item-img {
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    background:linear-gradient(135deg,#f0f9ff,#e0f2fe);
+    transition:transform .35s ease,filter .35s ease;
+    transform-origin:center;
+    cursor:zoom-in;
+  }
 
   .item-content {
     flex:1;
@@ -383,13 +381,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebas
 import { getDatabase, ref, onValue, runTransaction, get, set } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDqmNK2nF6KJsVcZFdP4VPHUKLiL89HIjg",
-  authDomain: "babyshowergaby-4ce16.firebaseapp.com",
-  databaseURL: "https://babyshowergaby-4ce16-default-rtdb.firebaseio.com",
-  projectId: "babyshowergaby-4ce16",
-  storageBucket: "babyshowergaby-4ce16.firebasestorage.app",
-  messagingSenderId: "367031549351",
-  appId: "1:367031549351:web:4b07dec773d4334dd20a82"
+  apiKey: "AIzaSyDnWXyeG0-WzHvqKiBqjZyYK7uypvXWz4A",
+  authDomain: "cadeaulijst-babyshower-huissen.firebaseapp.com",
+  databaseURL: "https://cadeaulijst-babyshower-huissen-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "cadeaulijst-babyshower-huissen",
+  storageBucket: "cadeaulijst-babyshower-huissen.firebasestorage.app",
+  messagingSenderId: "317198866703",
+  appId: "1:317198866703:web:dee3ef8fd921a63592467a"
 };
 
 const app = initializeApp(firebaseConfig);
