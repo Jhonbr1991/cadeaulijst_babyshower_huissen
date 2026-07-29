@@ -294,7 +294,6 @@
   button:disabled { cursor:not-allowed; opacity:.62; }
   .primary { border-color:#2f90c8; background:#4aa7dc; color:#fff; }
   .muted { border-color:#d7e3ea; color:#425b6b; }
-  .danger { border-color:#efaaaa; color:#a82f2f; }
 
   .banner { margin-bottom:7px; padding:10px 0; text-align:center; }
   .banner span {
@@ -378,7 +377,7 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getDatabase, ref, onValue, runTransaction, get, set } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnWXyeG0-WzHvqKiBqjZyYK7uypvXWz4A",
@@ -483,7 +482,6 @@ ITEMS.forEach(item => {
     const card = document.querySelector(`[data-key="${item.key}"]`);
     const reserveButton = card?.querySelector(`button[data-act="reserve"][data-id="${item.key}"]`);
     const badge = card?.querySelector(`[data-badge="${item.key}"]`);
-    let cancelButton = card?.querySelector(`button[data-act="cancel"][data-id="${item.key}"]`);
 
     if (data?.reserved) {
       card?.classList.add("reserved");
@@ -493,14 +491,6 @@ ITEMS.forEach(item => {
       }
       if (badge) badge.textContent = `Gereserveerd door ${data.name || "—"}`;
 
-      if (!cancelButton && card) {
-        cancelButton = document.createElement("button");
-        cancelButton.className = "danger";
-        cancelButton.dataset.act = "cancel";
-        cancelButton.dataset.id = item.key;
-        cancelButton.textContent = "Annuleren (pincode)";
-        card.querySelector(".controls")?.appendChild(cancelButton);
-      }
     } else {
       card?.classList.remove("reserved");
       if (reserveButton) {
@@ -508,7 +498,6 @@ ITEMS.forEach(item => {
         reserveButton.textContent = "Reserveren";
       }
       if (badge) badge.textContent = "";
-      cancelButton?.remove();
     }
   });
 });
@@ -577,33 +566,6 @@ addEventListener("click", async event => {
     return;
   }
 
-  if (action === "cancel") {
-    const pin = prompt("Vul de pincode van de gastvrouw in:");
-    if (!pin) return;
-
-    try {
-      const snapshot = await get(reservationRef);
-      const current = snapshot.val();
-
-      if (!current?.reserved) {
-        alert("Dit cadeau is niet gereserveerd.");
-        return;
-      }
-
-      await set(reservationRef, {
-        reserved:false,
-        name:current.name,
-        ts:current.ts,
-        pin,
-        cancelTs:Date.now()
-      });
-
-      alert("Reservering geannuleerd ✓");
-    } catch (error) {
-      console.error(error);
-      alert("Annuleren is niet gelukt.");
-    }
-  }
 });
 </script>
 </body>
